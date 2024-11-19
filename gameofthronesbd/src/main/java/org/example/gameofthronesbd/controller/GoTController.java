@@ -2,6 +2,7 @@ package org.example.gameofthronesbd.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.example.gameofthronesbd.model.Characters;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.io.IOException;
 import java.io.*;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -31,6 +33,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import org.example.gameofthronesbd.model.Conectar;
 import java.io.File;
@@ -89,6 +92,19 @@ public class GoTController {
     private TextField txtpassword;
 
     @FXML
+    private TextField txtid;
+    @FXML
+    private TextField txtnombre;
+    @FXML
+    private TextField txtapellido;
+    @FXML
+    private TextField txtnombrecompleto;
+    @FXML
+    private TextField txttitulo;
+    @FXML
+    private TextField txtfamilia;
+
+    @FXML
     private Button botonbuscar;
 
     @FXML
@@ -96,6 +112,19 @@ public class GoTController {
 
     @FXML
     private Button botonlogin;
+
+    @FXML
+    public void initialize() {
+
+        if (colnombrecompleto != null || colcasa != null || coltitulo != null) {
+            colnombrecompleto.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+            colcasa.setCellValueFactory(new PropertyValueFactory<>("family"));
+            coltitulo.setCellValueFactory(new PropertyValueFactory<>("title"));
+        }else {
+            ;
+        }
+        // Añadir más columnas si vemos que hace falta, por ej región
+    }
 
     // Método para cifrar la contraseña en SHA-256
     private String hashPassword(String password) {
@@ -156,6 +185,8 @@ public class GoTController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/gameofthronesbd/consultas_tabla.fxml"));
                 Parent root = loader.load();
+
+                //Cambio de escena
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -171,14 +202,73 @@ public class GoTController {
     }
 
 
-    //Modificar para que realice una consulta contra la base de datos
     @FXML
     public void busqueda(MouseEvent event) {
-        String idText = buscarid.getText().trim();
-        String nombre = buscarnombre.getText().trim();
-        String apellido = buscarapellido.getText().trim();
+        // Obtener valores de los campos de texto
+        String id = txtid.getText().trim();
+        String firstName = txtnombre.getText().trim();
+        String lastName = txtapellido.getText().trim();
+        String fullName = txtnombrecompleto.getText().trim();
+        String title = txttitulo.getText().trim();
+        String family = txtfamilia.getText().trim();
 
-        // Filtrar los personajes según los criterios de búsqueda
+        StringBuilder queryBuilder = new StringBuilder("SELECT fullName, family, title FROM characters WHERE 1=1");
+        List<String> parameters = new ArrayList<>();
+
+        // Construir la consulta dinámica según los campos no vacíos
+        if (!txtid.getText().trim().isEmpty()) {
+            queryBuilder.append(" AND id = ?");
+            parameters.add(txtid.getText().trim());
+        }
+        if (!txtnombre.getText().trim().isEmpty()) {
+            queryBuilder.append(" AND firstName LIKE ?");
+            parameters.add("%" + txtnombre.getText().trim() + "%");
+        }
+        if (!txtapellido.getText().trim().isEmpty()) {
+            queryBuilder.append(" AND lastName LIKE ?");
+            parameters.add("%" + txtapellido.getText().trim() + "%");
+        }
+        if (!txtnombrecompleto.getText().trim().isEmpty()) {
+            queryBuilder.append(" AND fullName LIKE ?");
+            parameters.add("%" + txtnombrecompleto.getText().trim() + "%");
+        }
+        if (!txttitulo.getText().trim().isEmpty()) {
+            queryBuilder.append(" AND title LIKE ?");
+            parameters.add("%" + txttitulo.getText().trim() + "%");
+        }
+        if (!txtfamilia.getText().trim().isEmpty()) {
+            queryBuilder.append(" AND family LIKE ?");
+            parameters.add("%" + txtfamilia.getText().trim() + "%");
+        }
+
+        // Ejecutar la consulta
+        List<CharactersItem> results = new ArrayList<>();
+        try (Connection connection = Conectar.conectarGoT();
+             PreparedStatement preparedStatement = connection.prepareStatement(queryBuilder.toString())) {
+
+            // Establecer los valores de los parámetros
+            for (int i = 0; i < parameters.size(); i++) {
+                preparedStatement.setString(i + 1, parameters.get(i));
+            }
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    // Crear objetos CharactersItem con los resultados
+                    CharactersItem character = new CharactersItem();
+                    character.setFullName(resultSet.getString("fullName"));
+                    character.setFamily(resultSet.getString("family"));
+                    character.setTitle(resultSet.getString("title"));
+                    results.add(character);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Cargar los resultados en la tabla
+        ObservableList<CharactersItem> observableResults = FXCollections.observableArrayList(results);
+        tablabusqueda.setItems(observableResults);
     }
 
     @FXML

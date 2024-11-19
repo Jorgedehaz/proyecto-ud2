@@ -10,8 +10,6 @@ import java.io.IOException;
 public class GoTApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        System.out.println(GoTApp.class.getResource("/gameofthronesbd/login.fxml"));
-
         FXMLLoader fxmlLoader = new FXMLLoader(GoTApp.class.getResource("/gameofthronesbd/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 640, 400);
         stage.setTitle("GoT");

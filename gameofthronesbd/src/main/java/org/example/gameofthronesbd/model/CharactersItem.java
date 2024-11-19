@@ -11,28 +11,52 @@ public class CharactersItem implements Serializable {
 	private String title;
 	private String family;
 
-	public String getFirstName(){
-		return firstName;
-	}
-
-	public String getLastName(){
-		return lastName;
-	}
-
-	public String getFullName(){
-		return fullName;
-	}
-
-	public int getId(){
+	public int getId() {
 		return id;
 	}
 
-	public String getTitle(){
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getTitle() {
 		return title;
 	}
 
-	public String getFamily(){
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getFamily() {
 		return family;
+	}
+
+	public void setFamily(String family) {
+		this.family = family;
 	}
 
 	@Override
