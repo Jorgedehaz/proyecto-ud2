@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -43,6 +45,20 @@
                 <Text fill="WHITE" layoutX="6.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Título:" />
                 <Text fill="WHITE" layoutX="424.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Familia:" />
                 <Text fill="WHITE" layoutX="192.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N.Completo:" />
+            <VBox fx:id="vboxCerrar" layoutX="119.0" layoutY="225.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="191.0" prefWidth="423.0" visible="false">
+               <children>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="191.0" prefWidth="422.0" style="-fx-background-color: white; -fx-border-color: blue;">
+                     <children>
+                        <Label fx:id="txtErrores" alignment="CENTER" layoutX="16.0" layoutY="58.0" prefHeight="20.0" prefWidth="391.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="boton_cerrar" layoutX="187.0" layoutY="102.0" mnemonicParsing="false" onAction="#clickCerrar" text="Cerrar" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
             </children>
         </AnchorPane>
     </children>
