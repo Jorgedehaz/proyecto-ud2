@@ -1,0 +1,283 @@
+Index: gameofthronesbd/src/main/resources/gameofthronesbd/consultas_tabla.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.TableColumn?>\r\n<?import javafx.scene.control.TableView?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.layout.AnchorPane?>\r\n<?import javafx.scene.layout.VBox?>\r\n<?import javafx.scene.text.Font?>\r\n<?import javafx.scene.text.Text?>\r\n\r\n<VBox fx:id=\"consultas\" maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"500.0\" prefWidth=\"640.0\" xmlns=\"http://javafx.com/javafx/23.0.1\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"org.example.gameofthronesbd.controller.GoTController\">\r\n    <children>\r\n        <AnchorPane maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"500.0\" prefWidth=\"640.0\" style=\"-fx-background-color: gray;\" VBox.vgrow=\"ALWAYS\">\r\n            <children>\r\n                <Text fill=\"WHITE\" layoutX=\"20.0\" layoutY=\"60.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"ID:\" />\r\n                <TextField fx:id=\"txtid\" layoutX=\"40.0\" layoutY=\"45.0\" style=\"-fx-background-color: f9ffb7;\" />\r\n                <TextField fx:id=\"txtnombre\" layoutX=\"260.0\" layoutY=\"45.0\" style=\"-fx-background-color: f9ffb7;\" />\r\n                <Text fill=\"WHITE\" layoutX=\"208.0\" layoutY=\"60.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Nombre:\" />\r\n                <TextField fx:id=\"txtapellido\" layoutX=\"470.0\" layoutY=\"45.0\" style=\"-fx-background-color: f9ffb7;\" />\r\n                <Text fill=\"WHITE\" layoutX=\"420.0\" layoutY=\"60.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Apellido:\" />\r\n                <Button fx:id=\"botonupdatepersonaje\" layoutX=\"146.0\" layoutY=\"460.0\" mnemonicParsing=\"false\" onAction=\"#abrirExportarDocumento\" style=\"-fx-background-color: red; -fx-border-color: white;\" text=\"Modificar Personaje\" textFill=\"WHITE\" />\r\n                <Button fx:id=\"botonsalir\" layoutX=\"570.0\" layoutY=\"460.0\" mnemonicParsing=\"false\" onAction=\"#salir\" style=\"-fx-background-color: red; -fx-border-color: white;\" text=\"Salir\" textFill=\"WHITE\" />\r\n                <TableView fx:id=\"tablabusqueda\" layoutX=\"24.0\" layoutY=\"190.0\" onMouseClicked=\"#onTableClicked\" prefHeight=\"256.0\" prefWidth=\"600.0\">\r\n                    <columns>\r\n                        <TableColumn fx:id=\"colnombrecompleto\" prefWidth=\"250.0\" text=\"Nombre Completo\" />\r\n                        <TableColumn fx:id=\"colcasa\" prefWidth=\"150.0\" text=\"Casa\" />\r\n                        <TableColumn fx:id=\"coltitulo\" prefWidth=\"200.0\" text=\"Título\" />\r\n                    </columns>\r\n                </TableView>\r\n                <Text fill=\"WHITE\" layoutX=\"65.0\" layoutY=\"25.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Indica el campo o campos por los que realizar la búsqueda\">\r\n                    <font>\r\n                        <Font size=\"20.0\" />\r\n                    </font>\r\n                </Text>\r\n                <Button fx:id=\"botonbuscar\" layoutX=\"300.0\" layoutY=\"150.0\" mnemonicParsing=\"false\" onMouseClicked=\"#busqueda\" style=\"-fx-background-color: red; -fx-border-color: white;\" text=\"Buscar\" textFill=\"WHITE\" />\r\n                <Button fx:id=\"botoninsert\" layoutX=\"24.0\" layoutY=\"460.0\" mnemonicParsing=\"false\" onAction=\"#abrirExportarDocumento\" style=\"-fx-background-color: red; -fx-border-color: white;\" text=\"Nuevo Personaje\" textFill=\"WHITE\" />\r\n                <Button fx:id=\"botonexportartabla2\" layoutX=\"405.0\" layoutY=\"460.0\" mnemonicParsing=\"false\" onAction=\"#abrirExportarDocumento\" style=\"-fx-background-color: red; -fx-border-color: white;\" text=\"Exportar Tabla\" textFill=\"WHITE\" />\r\n                <Button fx:id=\"botonborrarpersonaje\" layoutX=\"285.0\" layoutY=\"460.0\" mnemonicParsing=\"false\" onAction=\"#abrirExportarDocumento\" style=\"-fx-background-color: red; -fx-border-color: white;\" text=\"Borrar Personaje\" textFill=\"WHITE\" />\r\n                <TextField fx:id=\"txttitulo\" layoutX=\"40.0\" layoutY=\"98.0\" style=\"-fx-background-color: f9ffb7;\" />\r\n                <TextField fx:id=\"txtnombrecompleto\" layoutX=\"260.0\" layoutY=\"98.0\" style=\"-fx-background-color: f9ffb7;\" />\r\n                <TextField fx:id=\"txtfamilia\" layoutX=\"470.0\" layoutY=\"98.0\" style=\"-fx-background-color: f9ffb7;\" />\r\n                <Text fill=\"WHITE\" layoutX=\"6.0\" layoutY=\"114.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Título:\" />\r\n                <Text fill=\"WHITE\" layoutX=\"424.0\" layoutY=\"115.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Familia:\" />\r\n                <Text fill=\"WHITE\" layoutX=\"192.0\" layoutY=\"115.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"N.Completo:\" />\r\n            </children>\r\n        </AnchorPane>\r\n    </children>\r\n</VBox>\r\n
+===================================================================
+diff --git a/gameofthronesbd/src/main/resources/gameofthronesbd/consultas_tabla.fxml b/gameofthronesbd/src/main/resources/gameofthronesbd/consultas_tabla.fxml
+--- a/gameofthronesbd/src/main/resources/gameofthronesbd/consultas_tabla.fxml	(revision 8cb51cf1335c0443e3eac33af7f7b6be7a227a3c)
++++ b/gameofthronesbd/src/main/resources/gameofthronesbd/consultas_tabla.fxml	(date 1732097947123)
+@@ -34,7 +34,7 @@
+                     </font>
+                 </Text>
+                 <Button fx:id="botonbuscar" layoutX="300.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#busqueda" style="-fx-background-color: red; -fx-border-color: white;" text="Buscar" textFill="WHITE" />
+-                <Button fx:id="botoninsert" layoutX="24.0" layoutY="460.0" mnemonicParsing="false" onAction="#abrirExportarDocumento" style="-fx-background-color: red; -fx-border-color: white;" text="Nuevo Personaje" textFill="WHITE" />
++                <Button fx:id="botoninsert" layoutX="24.0" layoutY="460.0" mnemonicParsing="false" onAction="#abrirNuevoPersonaje" style="-fx-background-color: red; -fx-border-color: white;" text="Nuevo Personaje" textFill="WHITE" />
+                 <Button fx:id="botonexportartabla2" layoutX="405.0" layoutY="460.0" mnemonicParsing="false" onAction="#abrirExportarDocumento" style="-fx-background-color: red; -fx-border-color: white;" text="Exportar Tabla" textFill="WHITE" />
+                 <Button fx:id="botonborrarpersonaje" layoutX="285.0" layoutY="460.0" mnemonicParsing="false" onAction="#abrirExportarDocumento" style="-fx-background-color: red; -fx-border-color: white;" text="Borrar Personaje" textFill="WHITE" />
+                 <TextField fx:id="txttitulo" layoutX="40.0" layoutY="98.0" style="-fx-background-color: f9ffb7;" />
+Index: gameofthronesbd/src/main/resources/gameofthronesbd/exportar_documento.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.image.Image?>\r\n<?import javafx.scene.image.ImageView?>\r\n<?import javafx.scene.layout.Pane?>\r\n<?import javafx.scene.layout.VBox?>\r\n<?import javafx.scene.text.Font?>\r\n\r\n<VBox fx:id=\"exportar_documento\" alignment=\"CENTER\" maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"400.0\" prefWidth=\"640.0\" xmlns=\"http://javafx.com/javafx/23.0.1\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"org.example.gameofthronesbd.controller.GoTController\">\r\n   <children>\r\n      <Pane maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"400.0\" prefWidth=\"640.0\" style=\"-fx-background-color: gray;\">\r\n         <children>\r\n            <ImageView fx:id=\"imagenFondoStark1\" fitHeight=\"319.0\" fitWidth=\"258.0\" layoutX=\"-48.0\" layoutY=\"-35.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n               <image>\r\n                  <Image url=\"@/baratheon.png\" />\r\n               </image>\r\n            </ImageView>\r\n            <ImageView fx:id=\"imagenFondoStark\" fitHeight=\"319.0\" fitWidth=\"258.0\" layoutX=\"425.0\" layoutY=\"-35.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n               <image>\r\n                  <Image url=\"@/stark.png\" />\r\n               </image>\r\n            </ImageView>\r\n            <TextField fx:id=\"nombre_doc\" layoutX=\"245.0\" layoutY=\"94.0\" />\r\n            <Button fx:id=\"JSON\" layoutX=\"290.0\" layoutY=\"180.0\" maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" mnemonicParsing=\"false\" prefHeight=\"30.0\" prefWidth=\"50.0\" style=\"-fx-background-color: red; -fx-border-color: white;\" text=\"JSON\" textAlignment=\"CENTER\" textFill=\"WHITE\" wrapText=\"true\" />\r\n            <Button fx:id=\"Volver\" layoutX=\"26.0\" layoutY=\"343.0\" mnemonicParsing=\"false\" onAction=\"#clickVolver\" prefHeight=\"25.0\" prefWidth=\"76.0\" style=\"-fx-background-color: red; -fx-border-color: white;\" text=\"Volver\" textFill=\"WHITE\" />\r\n            <Label layoutX=\"255.0\" layoutY=\"63.0\" text=\"Nombre del documento\" textFill=\"WHITE\" />\r\n            <Label fx:id=\"doc_vacio\" layoutX=\"223.0\" layoutY=\"242.0\" text=\"El nombre del documento está vacío\" textFill=\"WHITE\" visible=\"false\" />\r\n            <VBox fx:id=\"vboxOk\" layoutX=\"182.0\" layoutY=\"121.0\" maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"159.0\" prefWidth=\"260.0\" visible=\"false\">\r\n               <children>\r\n                  <Pane maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"150.0\" prefWidth=\"250.0\" style=\"-fx-background-color: white; -fx-border-color: blue;\">\r\n                     <children>\r\n                        <Label layoutX=\"30.0\" layoutY=\"37.0\" text=\"Se ha exportado el documento\">\r\n                           <font>\r\n                              <Font size=\"14.0\" />\r\n                           </font>\r\n                        </Label>\r\n                        <Button fx:id=\"boton_ok\" layoutX=\"109.0\" layoutY=\"75.0\" mnemonicParsing=\"false\" onAction=\"#clickOk\" text=\"Ok\" />\r\n                     </children>\r\n                  </Pane>\r\n               </children>\r\n            </VBox>\r\n         </children>\r\n      </Pane>\r\n   </children>\r\n</VBox>\r\n
+===================================================================
+diff --git a/gameofthronesbd/src/main/resources/gameofthronesbd/exportar_documento.fxml b/gameofthronesbd/src/main/resources/gameofthronesbd/exportar_documento.fxml
+--- a/gameofthronesbd/src/main/resources/gameofthronesbd/exportar_documento.fxml	(revision 8cb51cf1335c0443e3eac33af7f7b6be7a227a3c)
++++ b/gameofthronesbd/src/main/resources/gameofthronesbd/exportar_documento.fxml	(date 1732095568780)
+@@ -24,7 +24,7 @@
+                </image>
+             </ImageView>
+             <TextField fx:id="nombre_doc" layoutX="245.0" layoutY="94.0" />
+-            <Button fx:id="JSON" layoutX="290.0" layoutY="180.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: red; -fx-border-color: white;" text="JSON" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
++            <Button fx:id="JSON" layoutX="290.0" layoutY="180.0" onAction="#exportarJSON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: red; -fx-border-color: white;" text="JSON" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+             <Button fx:id="Volver" layoutX="26.0" layoutY="343.0" mnemonicParsing="false" onAction="#clickVolver" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: red; -fx-border-color: white;" text="Volver" textFill="WHITE" />
+             <Label layoutX="255.0" layoutY="63.0" text="Nombre del documento" textFill="WHITE" />
+             <Label fx:id="doc_vacio" layoutX="223.0" layoutY="242.0" text="El nombre del documento está vacío" textFill="WHITE" visible="false" />
+Index: gameofthronesbd/src/main/java/org/example/gameofthronesbd/controller/GoTController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.gameofthronesbd.controller;\r\n\r\nimport javafx.event.ActionEvent;\r\nimport javafx.fxml.FXML;\r\nimport javafx.fxml.Initializable;\r\nimport javafx.scene.control.Label;\r\nimport org.example.gameofthronesbd.model.Characters;\r\nimport javafx.event.ActionEvent;\r\nimport javafx.fxml.FXML;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Node;\r\nimport javafx.scene.Parent;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.layout.VBox;\r\nimport javafx.stage.Stage;\r\nimport org.example.gameofthronesbd.model.CharactersItem;\r\nimport javafx.scene.control.cell.PropertyValueFactory;\r\nimport javafx.scene.input.MouseEvent;\r\nimport javafx.collections.FXCollections;\r\nimport javafx.collections.ObservableList;\r\nimport java.io.IOException;\r\nimport java.io.*;\r\nimport java.net.URL;\r\nimport java.security.MessageDigest;\r\nimport java.security.NoSuchAlgorithmException;\r\nimport java.sql.Connection;\r\nimport java.sql.PreparedStatement;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Properties;\r\nimport java.util.ResourceBundle;\r\nimport java.util.stream.Collectors;\r\nimport org.example.gameofthronesbd.model.Conectar;\r\nimport java.io.File;\r\nimport java.io.IOException;\r\n\r\npublic class GoTController {\r\n    @FXML\r\n    private ImageView imagenCharacter;\r\n\r\n    @FXML\r\n    private VBox vboxOk;\r\n\r\n    @FXML\r\n    private Button boton_ok;\r\n\r\n    @FXML\r\n    private Label doc_vacio;\r\n\r\n    @FXML\r\n    private Label datos_incorrectos;\r\n\r\n    @FXML\r\n    private TextField nombre_doc;\r\n\r\n    @FXML\r\n    private VBox exportar_documento;\r\n\r\n    @FXML\r\n    private Button Volver;\r\n\r\n    @FXML\r\n    private TextField buscarid;\r\n\r\n    @FXML\r\n    private TextField buscarnombre;\r\n\r\n    @FXML\r\n    private TextField buscarapellido;\r\n\r\n    @FXML\r\n    private TableView<CharactersItem> tablabusqueda;\r\n\r\n    @FXML\r\n    private TableColumn<CharactersItem, String> colnombrecompleto;\r\n\r\n    @FXML\r\n    private TableColumn<CharactersItem, String> colcasa;\r\n\r\n    @FXML\r\n    private TableColumn<CharactersItem, String> coltitulo;\r\n\r\n    @FXML\r\n    private TextField txtname;\r\n\r\n    @FXML\r\n    private TextField txtpassword;\r\n\r\n    @FXML\r\n    private TextField txtid;\r\n    @FXML\r\n    private TextField txtnombre;\r\n    @FXML\r\n    private TextField txtapellido;\r\n    @FXML\r\n    private TextField txtnombrecompleto;\r\n    @FXML\r\n    private TextField txttitulo;\r\n    @FXML\r\n    private TextField txtfamilia;\r\n\r\n    @FXML\r\n    private Button botonbuscar;\r\n\r\n    @FXML\r\n    private Button botonexportartabla;\r\n\r\n    @FXML\r\n    private Button botonlogin;\r\n\r\n    @FXML\r\n    public void initialize() {\r\n\r\n        if (colnombrecompleto != null || colcasa != null || coltitulo != null) {\r\n            colnombrecompleto.setCellValueFactory(new PropertyValueFactory<>(\"fullName\"));\r\n            colcasa.setCellValueFactory(new PropertyValueFactory<>(\"family\"));\r\n            coltitulo.setCellValueFactory(new PropertyValueFactory<>(\"title\"));\r\n        }else {\r\n            ;\r\n        }\r\n        // Añadir más columnas si vemos que hace falta, por ej región\r\n    }\r\n\r\n    // Método para cifrar la contraseña en SHA-256\r\n    private String hashPassword(String password) {\r\n        try {\r\n            MessageDigest digest = MessageDigest.getInstance(\"SHA-256\");\r\n            byte[] hashBytes = digest.digest(password.getBytes());\r\n            StringBuilder hexString = new StringBuilder();\r\n            for (byte b : hashBytes) {\r\n                hexString.append(String.format(\"%02x\", b));\r\n            }\r\n            return hexString.toString(); // Devuelve el hash como un String hexadecimal\r\n        } catch (NoSuchAlgorithmException e) {\r\n            e.printStackTrace();\r\n            return null;\r\n        }\r\n    }\r\n\r\n\r\n    @FXML\r\n    private boolean verificacion(String nombre, String password) {\r\n        // Cifrar la contraseña ingresada usando SHA-256\r\n        String hashedPassword = hashPassword(password);\r\n\r\n        String query = \"SELECT password FROM usuarios WHERE nombre = ?\";\r\n\r\n        try (Connection connection = Conectar.conectarusuarios();\r\n             PreparedStatement preparedStatement = connection.prepareStatement(query)) {\r\n\r\n            preparedStatement.setString(1, nombre);\r\n\r\n            try (ResultSet resultSet = preparedStatement.executeQuery()) {\r\n                // Verificar si se encontró el usuario y si la contraseña coincide\r\n                if (resultSet.next()) {\r\n                    String storedPassword = resultSet.getString(\"password\");\r\n                    // Comparar el hash de la contraseña almacenada con el de la ingresada\r\n                    return storedPassword.equals(hashedPassword);\r\n                }\r\n            }\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return false;\r\n    }\r\n\r\n    @FXML\r\n    public void login(ActionEvent actionEvent) {\r\n        String nombre = txtname.getText().trim();\r\n        String password = txtpassword.getText().trim();\r\n\r\n        // Verificar si los campos están vacíos\r\n        if (nombre.isEmpty() || password.isEmpty()) {\r\n            datos_incorrectos.setVisible(true);  // Mostrar el mensaje de error si faltan datos\r\n            return;\r\n        }\r\n\r\n        // Verificar si las credenciales son correctas\r\n        if (verificacion(nombre, password)) {\r\n            try {\r\n                FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/gameofthronesbd/consultas_tabla.fxml\"));\r\n                Parent root = loader.load();\r\n\r\n                //Cambio de escena\r\n                Scene scene = new Scene(root);\r\n                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();\r\n                stage.setScene(scene);\r\n                stage.show();\r\n            } catch (IOException e) {\r\n                e.printStackTrace();\r\n            }\r\n        } else {\r\n            datos_incorrectos.setVisible(true);  // Mostrar mensaje de error si la verificación falla\r\n            txtname.clear();\r\n            txtpassword.clear();\r\n        }\r\n    }\r\n\r\n\r\n    @FXML\r\n    public void busqueda(MouseEvent event) {\r\n        // Obtener valores de los campos de texto\r\n        String id = txtid.getText().trim();\r\n        String firstName = txtnombre.getText().trim();\r\n        String lastName = txtapellido.getText().trim();\r\n        String fullName = txtnombrecompleto.getText().trim();\r\n        String title = txttitulo.getText().trim();\r\n        String family = txtfamilia.getText().trim();\r\n\r\n        StringBuilder queryBuilder = new StringBuilder(\"SELECT fullName, family, title FROM characters WHERE 1=1\");\r\n        List<String> parameters = new ArrayList<>();\r\n\r\n        // Construir la consulta dinámica según los campos no vacíos\r\n        if (!txtid.getText().trim().isEmpty()) {\r\n            queryBuilder.append(\" AND id = ?\");\r\n            parameters.add(txtid.getText().trim());\r\n        }\r\n        if (!txtnombre.getText().trim().isEmpty()) {\r\n            queryBuilder.append(\" AND firstName LIKE ?\");\r\n            parameters.add(\"%\" + txtnombre.getText().trim() + \"%\");\r\n        }\r\n        if (!txtapellido.getText().trim().isEmpty()) {\r\n            queryBuilder.append(\" AND lastName LIKE ?\");\r\n            parameters.add(\"%\" + txtapellido.getText().trim() + \"%\");\r\n        }\r\n        if (!txtnombrecompleto.getText().trim().isEmpty()) {\r\n            queryBuilder.append(\" AND fullName LIKE ?\");\r\n            parameters.add(\"%\" + txtnombrecompleto.getText().trim() + \"%\");\r\n        }\r\n        if (!txttitulo.getText().trim().isEmpty()) {\r\n            queryBuilder.append(\" AND title LIKE ?\");\r\n            parameters.add(\"%\" + txttitulo.getText().trim() + \"%\");\r\n        }\r\n        if (!txtfamilia.getText().trim().isEmpty()) {\r\n            queryBuilder.append(\" AND family LIKE ?\");\r\n            parameters.add(\"%\" + txtfamilia.getText().trim() + \"%\");\r\n        }\r\n\r\n        // Ejecutar la consulta\r\n        List<CharactersItem> results = new ArrayList<>();\r\n        try (Connection connection = Conectar.conectarGoT();\r\n             PreparedStatement preparedStatement = connection.prepareStatement(queryBuilder.toString())) {\r\n\r\n            // Establecer los valores de los parámetros\r\n            for (int i = 0; i < parameters.size(); i++) {\r\n                preparedStatement.setString(i + 1, parameters.get(i));\r\n            }\r\n\r\n            try (ResultSet resultSet = preparedStatement.executeQuery()) {\r\n                while (resultSet.next()) {\r\n                    // Crear objetos CharactersItem con los resultados\r\n                    CharactersItem character = new CharactersItem();\r\n                    character.setFullName(resultSet.getString(\"fullName\"));\r\n                    character.setFamily(resultSet.getString(\"family\"));\r\n                    character.setTitle(resultSet.getString(\"title\"));\r\n                    results.add(character);\r\n                }\r\n            }\r\n\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        // Cargar los resultados en la tabla\r\n        ObservableList<CharactersItem> observableResults = FXCollections.observableArrayList(results);\r\n        tablabusqueda.setItems(observableResults);\r\n    }\r\n\r\n    @FXML\r\n    protected void clickVolver(ActionEvent event) throws IOException {\r\n        try {\r\n            FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/gameofthronesbd/consultas_tabla.fxml\"));\r\n            Parent root = loader.load();\r\n            Scene scene = new Scene(root);\r\n            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();\r\n            stage.setScene(scene);\r\n            stage.show();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    protected void salir(ActionEvent event) throws IOException {\r\n        try {\r\n            FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/gameofthronesbd/login.fxml\"));\r\n            Parent root = loader.load();\r\n            Scene scene = new Scene(root);\r\n            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();\r\n            stage.setScene(scene);\r\n            stage.show();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    public void clickOk(ActionEvent actionEvent) {\r\n        vboxOk.setVisible(false);\r\n    }\r\n\r\n    @FXML\r\n    public void abrirExportarDocumento(ActionEvent actionEvent) {\r\n        try {\r\n            FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/gameofthronesbd/exportar_documento.fxml\"));\r\n            Parent root = loader.load();\r\n            Scene scene = new Scene(root);\r\n            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();\r\n            stage.setScene(scene);\r\n            stage.show();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n\r\n    //Modificar el metodo para que el onclick en la tabla cargue los datos del personaje en los campos, no la imagen\r\n    public void onTableClicked(MouseEvent event) {\r\n        // Verifica si se ha realizado un doble clic en la tabla\r\n        if (event.getClickCount() == 2) {\r\n            // Obtiene el elemento seleccionado de la tabla\r\n            CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();\r\n            //Crea una imagen a partir de la url a la imagen del personaje\r\n\r\n        }\r\n    }\r\n}\r\n\r\n
+===================================================================
+diff --git a/gameofthronesbd/src/main/java/org/example/gameofthronesbd/controller/GoTController.java b/gameofthronesbd/src/main/java/org/example/gameofthronesbd/controller/GoTController.java
+--- a/gameofthronesbd/src/main/java/org/example/gameofthronesbd/controller/GoTController.java	(revision 8cb51cf1335c0443e3eac33af7f7b6be7a227a3c)
++++ b/gameofthronesbd/src/main/java/org/example/gameofthronesbd/controller/GoTController.java	(date 1732103549726)
+@@ -1,18 +1,14 @@
+ package org.example.gameofthronesbd.controller;
+ 
++import com.fasterxml.jackson.databind.ObjectMapper;
+ import javafx.event.ActionEvent;
+ import javafx.fxml.FXML;
+-import javafx.fxml.Initializable;
+ import javafx.scene.control.Label;
+-import org.example.gameofthronesbd.model.Characters;
+-import javafx.event.ActionEvent;
+-import javafx.fxml.FXML;
+ import javafx.fxml.FXMLLoader;
+ import javafx.scene.Node;
+ import javafx.scene.Parent;
+ import javafx.scene.Scene;
+ import javafx.scene.control.*;
+-import javafx.scene.image.Image;
+ import javafx.scene.image.ImageView;
+ import javafx.scene.layout.VBox;
+ import javafx.stage.Stage;
+@@ -22,22 +18,14 @@
+ import javafx.collections.FXCollections;
+ import javafx.collections.ObservableList;
+ import java.io.IOException;
+-import java.io.*;
+-import java.net.URL;
+ import java.security.MessageDigest;
+ import java.security.NoSuchAlgorithmException;
+-import java.sql.Connection;
+-import java.sql.PreparedStatement;
+-import java.sql.ResultSet;
+-import java.sql.SQLException;
++import java.sql.*;
+ import java.util.ArrayList;
+ import java.util.List;
+-import java.util.Properties;
+-import java.util.ResourceBundle;
+-import java.util.stream.Collectors;
++
+ import org.example.gameofthronesbd.model.Conectar;
+ import java.io.File;
+-import java.io.IOException;
+ 
+ public class GoTController {
+     @FXML
+@@ -64,6 +52,9 @@
+     @FXML
+     private Button Volver;
+ 
++    @FXML
++    private Button botoninsert;
++
+     @FXML
+     private TextField buscarid;
+ 
+@@ -104,6 +95,17 @@
+     @FXML
+     private TextField txtfamilia;
+ 
++    @FXML
++    private TextField txtnuevonombre;
++    @FXML
++    private TextField txtnuevoapellido;
++    @FXML
++    private TextField txtnuevotitulo;
++    @FXML
++    private TextField txtnuevonombrecompleto;
++    @FXML
++    private TextField txtnuevofamilia;
++
+     @FXML
+     private Button botonbuscar;
+ 
+@@ -269,6 +271,7 @@
+         // Cargar los resultados en la tabla
+         ObservableList<CharactersItem> observableResults = FXCollections.observableArrayList(results);
+         tablabusqueda.setItems(observableResults);
++        SearchHolder.getInstance().setCharacterItems(tablabusqueda.getItems());
+     }
+ 
+     @FXML
+@@ -318,6 +321,29 @@
+         }
+     }
+ 
++    @FXML
++    public void exportarJSON(ActionEvent actionEvent) {
++        // Verifica si el campo de texto 'nombre_doc' no está vacío
++        if (!nombre_doc.getText().isEmpty()){
++            // Si no está vacío, oculta el mensaje de documento vacío
++            doc_vacio.setVisible(false);
++            // Crea una instancia de ObjectMapper para manejar la conversión a JSON
++            ObjectMapper objectMapper = new ObjectMapper();
++            try {
++                //Escribe los datos obtenidos de la búsqueda y los escribe en un documento .json cuyo nombre recibe del campo de texto
++                objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File("src/main/docs/" + nombre_doc.getText() + ".json"), SearchHolder.getInstance().getCharacterItems());
++            } catch (IOException e) {
++                e.printStackTrace();
++            }
++            //Hace visible el vboxOk que muestra un mensaje indicando que la exportación se ha realizado
++            vboxOk.setVisible(true);
++        }
++        else{
++            // Si el campo nombre_doc está vacío muestra el texto doc_vacío
++            doc_vacio.setVisible(true);
++        }
++    }
++
+ 
+     //Modificar el metodo para que el onclick en la tabla cargue los datos del personaje en los campos, no la imagen
+     public void onTableClicked(MouseEvent event) {
+@@ -327,6 +353,59 @@
+             CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
+             //Crea una imagen a partir de la url a la imagen del personaje
+ 
++        }
++    }
++
++    @FXML
++    public void abrirNuevoPersonaje(ActionEvent actionEvent) {
++        try {
++            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gameofthronesbd/nuevo_personaje.fxml"));
++            Parent root = loader.load();
++            Scene scene = new Scene(root);
++            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
++            stage.setScene(scene);
++            stage.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++
++    //Boton para insertar nuevo personaje
++    @FXML
++    public void insertCharacter (ActionEvent event) {
++        ArrayList<String> familias = new ArrayList<>();
++//        Connection con = Conectar.conectarGoT();
++//        Statement stmt = con.createStatement();
++//        ResultSet rs = stmt.executeQuery("SELECT familyName FROM families");
++
++        String firstName =txtnuevonombre.getText().trim();
++        String lastName = txtnuevoapellido.getText().trim();
++        String fullName = txtnuevotitulo.getText().trim();
++        String title = txtnuevonombrecompleto.getText().trim();
++        String family = txtnuevofamilia.getSelectedText().trim();
++
++        try (Connection connection = Conectar.conectarGoT()) {
++            try (PreparedStatement preparedStatement = connection.prepareStatement(
++                    "INSERT INTO characters (firstName, lastName, fullName, title, family) VALUES (?, ?, ?, ?, ?)")) {
++
++                preparedStatement.setString(1, firstName);
++                preparedStatement.setString(2, lastName);
++                preparedStatement.setString(3, fullName);
++                preparedStatement.setString(4, title);
++                preparedStatement.setString(5, family);
++
++                // Ejecutar la consulta
++                int resultado = preparedStatement.executeUpdate();
++
++                if (resultado > 0) {
++                    System.out.println("Personaje creado");
++                } else {
++                    System.out.println("No se insertó el personaje");
++                }
++
++            }
++        } catch (SQLException e) {
++            e.printStackTrace();
+         }
+     }
+ }
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/gameofthronesbd/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"azul-17\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 8cb51cf1335c0443e3eac33af7f7b6be7a227a3c)
++++ b/.idea/misc.xml	(date 1732093878209)
+@@ -8,7 +8,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" project-jdk-name="azul-17" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="azul-17" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: gameofthronesbd/src/main/java/module-info.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>module org.example.gameofthronesbd {\r\n    requires javafx.controls;\r\n    requires javafx.fxml;\r\n    requires javafx.base;\r\n    requires javafx.graphics;\r\n\r\n    requires org.controlsfx.controls;\r\n    requires net.synedra.validatorfx;\r\n    requires java.sql;\r\n\r\n    opens org.example.gameofthronesbd.model to javafx.base;\r\n    opens org.example.gameofthronesbd to javafx.fxml;\r\n    opens org.example.gameofthronesbd.controller to javafx.fxml;\r\n\r\n    exports org.example.gameofthronesbd;\r\n    exports org.example.gameofthronesbd.controller;\r\n    exports org.example.gameofthronesbd.model;\r\n}
+===================================================================
+diff --git a/gameofthronesbd/src/main/java/module-info.java b/gameofthronesbd/src/main/java/module-info.java
+--- a/gameofthronesbd/src/main/java/module-info.java	(revision 8cb51cf1335c0443e3eac33af7f7b6be7a227a3c)
++++ b/gameofthronesbd/src/main/java/module-info.java	(date 1732095568773)
+@@ -6,6 +6,7 @@
+ 
+     requires org.controlsfx.controls;
+     requires net.synedra.validatorfx;
++    requires com.fasterxml.jackson.databind;
+     requires java.sql;
+ 
+     opens org.example.gameofthronesbd.model to javafx.base;
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"$PROJECT_DIR$\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+--- a/.idea/vcs.xml	(revision 8cb51cf1335c0443e3eac33af7f7b6be7a227a3c)
++++ b/.idea/vcs.xml	(date 1732097708308)
+@@ -2,5 +2,6 @@
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+     <mapping directory="$PROJECT_DIR$" vcs="Git" />
++    <mapping directory="$PROJECT_DIR$/proyecto-ud2" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: gameofthronesbd/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <groupId>org.example</groupId>\r\n    <artifactId>gameofthronesbd</artifactId>\r\n    <version>1.0-SNAPSHOT</version>\r\n    <name>gameofthronesbd</name>\r\n\r\n    <properties>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n        <junit.version>5.10.2</junit.version>\r\n    </properties>\r\n\r\n    <dependencies>\r\n\r\n        <dependency>\r\n            <groupId>mysql</groupId>\r\n            <artifactId>mysql-connector-java</artifactId>\r\n            <version>8.0.33</version>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-controls</artifactId>\r\n            <version>17.0.6</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-fxml</artifactId>\r\n            <version>17.0.6</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.controlsfx</groupId>\r\n            <artifactId>controlsfx</artifactId>\r\n            <version>11.2.1</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>net.synedra</groupId>\r\n            <artifactId>validatorfx</artifactId>\r\n            <version>0.5.0</version>\r\n            <exclusions>\r\n                <exclusion>\r\n                    <groupId>org.openjfx</groupId>\r\n                    <artifactId>*</artifactId>\r\n                </exclusion>\r\n            </exclusions>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-api</artifactId>\r\n            <version>${junit.version}</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-engine</artifactId>\r\n            <version>${junit.version}</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n    </dependencies>\r\n\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.apache.maven.plugins</groupId>\r\n                <artifactId>maven-compiler-plugin</artifactId>\r\n                <version>3.13.0</version>\r\n                <configuration>\r\n                    <source>17</source>\r\n                    <target>17</target>\r\n                </configuration>\r\n            </plugin>\r\n            <plugin>\r\n                <groupId>org.openjfx</groupId>\r\n                <artifactId>javafx-maven-plugin</artifactId>\r\n                <version>0.0.8</version>\r\n                <executions>\r\n                    <execution>\r\n                        <!-- Default configuration for running with: mvn clean javafx:run -->\r\n                        <id>default-cli</id>\r\n                        <configuration>\r\n                            <mainClass>org.example.gameofthronesbd/org.example.gameofthronesbd.GoTApp\r\n                            </mainClass>\r\n                            <launcher>app</launcher>\r\n                            <jlinkZipName>app</jlinkZipName>\r\n                            <jlinkImageName>app</jlinkImageName>\r\n                            <noManPages>true</noManPages>\r\n                            <stripDebug>true</stripDebug>\r\n                            <noHeaderFiles>true</noHeaderFiles>\r\n                        </configuration>\r\n                    </execution>\r\n                </executions>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n</project>
+===================================================================
+diff --git a/gameofthronesbd/pom.xml b/gameofthronesbd/pom.xml
+--- a/gameofthronesbd/pom.xml	(revision 8cb51cf1335c0443e3eac33af7f7b6be7a227a3c)
++++ b/gameofthronesbd/pom.xml	(date 1732095315420)
+@@ -60,6 +60,11 @@
+             <version>${junit.version}</version>
+             <scope>test</scope>
+         </dependency>
++        <dependency>
++            <groupId>com.fasterxml.jackson.core</groupId>
++            <artifactId>jackson-databind</artifactId>
++            <version>2.18.0-rc1</version>
++        </dependency>
+     </dependencies>
+ 
+     <build>
