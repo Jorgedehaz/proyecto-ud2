@@ -26,10 +26,7 @@ import java.io.*;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -45,10 +42,16 @@ public class GoTController {
     private ImageView imagenCharacter;
 
     @FXML
-    private VBox vboxOk;
+    private VBox consultas;
 
     @FXML
-    private Button boton_ok;
+    private Label txtErrores;
+
+    @FXML
+    private VBox vboxCerrar;
+
+    @FXML
+    private Button boton_cerrar;
 
     @FXML
     private Label doc_vacio;
@@ -204,7 +207,7 @@ public class GoTController {
 
 
     @FXML
-    public void busqueda(MouseEvent event) {
+    public void busqueda() {
         // Obtener valores de los campos de texto
         String id = txtid.getText().trim();
         String firstName = txtnombre.getText().trim();
@@ -212,62 +215,64 @@ public class GoTController {
         String fullName = txtnombrecompleto.getText().trim();
         String title = txttitulo.getText().trim();
         String family = txtfamilia.getText().trim();
-
-        StringBuilder queryBuilder = new StringBuilder("SELECT * FROM characters WHERE 1=1");
-        List<String> parameters = new ArrayList<>();
-
-        // Construir la consulta dinámica según los campos no vacíos
-        if (!txtid.getText().trim().isEmpty()) {
-            queryBuilder.append(" AND id = ?");
-            parameters.add(txtid.getText().trim());
-        }
-        if (!txtnombre.getText().trim().isEmpty()) {
-            queryBuilder.append(" AND firstName LIKE ?");
-            parameters.add("%" + txtnombre.getText().trim() + "%");
-        }
-        if (!txtapellido.getText().trim().isEmpty()) {
-            queryBuilder.append(" AND lastName LIKE ?");
-            parameters.add("%" + txtapellido.getText().trim() + "%");
-        }
-        if (!txtnombrecompleto.getText().trim().isEmpty()) {
-            queryBuilder.append(" AND fullName LIKE ?");
-            parameters.add("%" + txtnombrecompleto.getText().trim() + "%");
-        }
-        if (!txttitulo.getText().trim().isEmpty()) {
-            queryBuilder.append(" AND title LIKE ?");
-            parameters.add("%" + txttitulo.getText().trim() + "%");
-        }
-        if (!txtfamilia.getText().trim().isEmpty()) {
-            queryBuilder.append(" AND family LIKE ?");
-            parameters.add("%" + txtfamilia.getText().trim() + "%");
-        }
-
-        // Ejecutar la consulta
         List<CharactersItem> results = new ArrayList<>();
-        try (Connection connection = Conectar.conectarGoT();
-             PreparedStatement preparedStatement = connection.prepareStatement(queryBuilder.toString())) {
+        if (!id.equals("") || !firstName.equals("") || !lastName.equals("") || !fullName.equals("") || !title.equals("") || !family.equals("")) {
+            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM characters WHERE 1=1");
+            List<String> parameters = new ArrayList<>();
 
-            // Establecer los valores de los parámetros
-            for (int i = 0; i < parameters.size(); i++) {
-                preparedStatement.setString(i + 1, parameters.get(i));
+            // Construir la consulta dinámica según los campos no vacíos
+            if (!txtid.getText().trim().isEmpty()) {
+                queryBuilder.append(" AND id = ?");
+                parameters.add(id);
+            }
+            if (!txtnombre.getText().trim().isEmpty()) {
+                queryBuilder.append(" AND firstName LIKE ?");
+                parameters.add("%" + firstName + "%");
+            }
+            if (!txtapellido.getText().trim().isEmpty()) {
+                queryBuilder.append(" AND lastName LIKE ?");
+                parameters.add("%" + lastName + "%");
+            }
+            if (!txtnombrecompleto.getText().trim().isEmpty()) {
+                queryBuilder.append(" AND fullName LIKE ?");
+                parameters.add("%" + fullName + "%");
+            }
+            if (!txttitulo.getText().trim().isEmpty()) {
+                queryBuilder.append(" AND title LIKE ?");
+                parameters.add("%" + title + "%");
+            }
+            if (!txtfamilia.getText().trim().isEmpty()) {
+                queryBuilder.append(" AND family LIKE ?");
+                parameters.add("%" + family + "%");
             }
 
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    // Crear objetos CharactersItem con los resultados
-                    CharactersItem character = new CharactersItem();
-                    character.setId(resultSet.getInt("id"));
-                    character.setFirstName(resultSet.getString("firstName"));
-                    character.setLastName(resultSet.getString("lastName"));
-                    character.setFullName(resultSet.getString("fullName"));
-                    character.setFamily(resultSet.getString("family"));
-                    character.setTitle(resultSet.getString("title"));
-                    results.add(character);
+            // Ejecutar la consulta
+            results = new ArrayList<>();
+            try (Connection connection = Conectar.conectarGoT();
+                 PreparedStatement preparedStatement = connection.prepareStatement(queryBuilder.toString())) {
+
+                // Establecer los valores de los parámetros
+                for (int i = 0; i < parameters.size(); i++) {
+                    preparedStatement.setString(i + 1, parameters.get(i));
                 }
-            }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        // Crear objetos CharactersItem con los resultados
+                        CharactersItem character = new CharactersItem();
+                        character.setId(resultSet.getInt("id"));
+                        character.setFirstName(resultSet.getString("firstName"));
+                        character.setLastName(resultSet.getString("lastName"));
+                        character.setFullName(resultSet.getString("fullName"));
+                        character.setFamily(resultSet.getString("family"));
+                        character.setTitle(resultSet.getString("title"));
+                        results.add(character);
+                    }
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         // Cargar los resultados en la tabla
@@ -304,8 +309,10 @@ public class GoTController {
     }
 
     @FXML
-    public void clickOk(ActionEvent actionEvent) {
-        vboxOk.setVisible(false);
+    public void clickCerrar(ActionEvent actionEvent) {
+        vboxCerrar.setVisible(false);
+        txtErrores.setText("");
+        consultas.setDisable(false);;
     }
 
     @FXML
@@ -329,13 +336,46 @@ public class GoTController {
         if (event.getClickCount() == 1) {
             // Obtiene el elemento seleccionado de la tabla
             CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
-            //Crea una imagen a partir de la url a la imagen del personaje
-            txtid.setText(String.valueOf(item.getId()));
-            txtnombre.setText(item.getFirstName());
-            txtapellido.setText(item.getLastName());
-            txtnombrecompleto.setText(item.getFullName());
-            txttitulo.setText(item.getTitle());
-            txtfamilia.setText(item.getFamily());
+            if (item != null) {
+                //Crea una imagen a partir de la url a la imagen del personaje
+                txtid.setText(String.valueOf(item.getId()));
+                txtnombre.setText(item.getFirstName());
+                txtapellido.setText(item.getLastName());
+                txtnombrecompleto.setText(item.getFullName());
+                txttitulo.setText(item.getTitle());
+                txtfamilia.setText(item.getFamily());
+            }
+        }
+    }
+
+    @FXML
+    public void clearCampos() {
+        txtid.clear();
+        txtnombre.clear();
+        txtfamilia.clear();
+        txtapellido.clear();
+        txttitulo.clear();
+        txtnombrecompleto.clear();
+    }
+
+    @FXML
+    public void deleteCharacter() {
+        CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
+        if (item != null) {
+            String str = "DELETE FROM characters WHERE id = ?";
+            try (Connection connection = Conectar.conectarGoT();
+                 PreparedStatement statement = connection.prepareStatement(str);) {
+                statement.setInt(1, item.getId());
+                statement.executeUpdate();
+                clearCampos();
+                busqueda();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            txtErrores.setText("No se ha seleccionado ningún personaje a borrar");
+            vboxCerrar.setVisible(true);
         }
     }
 }
