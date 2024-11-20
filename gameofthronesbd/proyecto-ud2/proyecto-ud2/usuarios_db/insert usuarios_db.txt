@@ -1,0 +1,8 @@
+
+INSERT INTO usuarios (nombre, password)
+VALUES 
+('Administrador', SHA2('renaido', 256)),
+('Jorge', SHA2('Jorge', 256)),
+('Miguel', SHA2('Miguel', 256));
+
+
