@@ -338,5 +338,19 @@ public class GoTController {
             txtfamilia.setText(item.getFamily());
         }
     }
+
+    @FXML
+    public void deleteCharacter() {
+        CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
+        String str = "DELETE FROM characters WHERE id = ?";
+        try (Connection connection = Conectar.conectarGoT();
+             PreparedStatement statement = connection.prepareStatement(str);){
+                 statement.setInt(1, item.getId());
+                 statement.executeUpdate();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
 
