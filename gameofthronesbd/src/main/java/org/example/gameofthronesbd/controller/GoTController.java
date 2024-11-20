@@ -40,6 +40,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class GoTController {
+
     @FXML
     private ImageView imagenCharacter;
 
@@ -212,7 +213,7 @@ public class GoTController {
         String title = txttitulo.getText().trim();
         String family = txtfamilia.getText().trim();
 
-        StringBuilder queryBuilder = new StringBuilder("SELECT fullName, family, title FROM characters WHERE 1=1");
+        StringBuilder queryBuilder = new StringBuilder("SELECT * FROM characters WHERE 1=1");
         List<String> parameters = new ArrayList<>();
 
         // Construir la consulta dinámica según los campos no vacíos
@@ -255,6 +256,9 @@ public class GoTController {
                 while (resultSet.next()) {
                     // Crear objetos CharactersItem con los resultados
                     CharactersItem character = new CharactersItem();
+                    character.setId(resultSet.getInt("id"));
+                    character.setFirstName(resultSet.getString("firstName"));
+                    character.setLastName(resultSet.getString("lastName"));
                     character.setFullName(resultSet.getString("fullName"));
                     character.setFamily(resultSet.getString("family"));
                     character.setTitle(resultSet.getString("title"));
@@ -319,14 +323,19 @@ public class GoTController {
     }
 
 
-    //Modificar el metodo para que el onclick en la tabla cargue los datos del personaje en los campos, no la imagen
+    @FXML
     public void onTableClicked(MouseEvent event) {
         // Verifica si se ha realizado un doble clic en la tabla
-        if (event.getClickCount() == 2) {
+        if (event.getClickCount() == 1) {
             // Obtiene el elemento seleccionado de la tabla
             CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
             //Crea una imagen a partir de la url a la imagen del personaje
-
+            txtid.setText(String.valueOf(item.getId()));
+            txtnombre.setText(item.getFirstName());
+            txtapellido.setText(item.getLastName());
+            txtnombrecompleto.setText(item.getFullName());
+            txttitulo.setText(item.getTitle());
+            txtfamilia.setText(item.getFamily());
         }
     }
 }
