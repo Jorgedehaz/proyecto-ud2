@@ -2,6 +2,7 @@ package org.example.gameofthronesbd.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.example.gameofthronesbd.model.Characters;
@@ -46,6 +47,9 @@ public class GoTController {
 
     @FXML
     private Label txtErrores;
+
+    @FXML
+    private VBox vboxOk;
 
     @FXML
     private VBox vboxCerrar;
@@ -278,6 +282,7 @@ public class GoTController {
         // Cargar los resultados en la tabla
         ObservableList<CharactersItem> observableResults = FXCollections.observableArrayList(results);
         tablabusqueda.setItems(observableResults);
+        SearchHolder.getInstance().setCharacterItems(tablabusqueda.getItems());
     }
 
     @FXML
@@ -344,6 +349,7 @@ public class GoTController {
                 txtnombrecompleto.setText(item.getFullName());
                 txttitulo.setText(item.getTitle());
                 txtfamilia.setText(item.getFamily());
+                txtid.setDisable(true);
             }
         }
     }
@@ -356,6 +362,7 @@ public class GoTController {
         txtapellido.clear();
         txttitulo.clear();
         txtnombrecompleto.clear();
+        txtid.setDisable(false);
     }
 
     @FXML
@@ -377,6 +384,66 @@ public class GoTController {
             txtErrores.setText("No se ha seleccionado ningún personaje a borrar");
             vboxCerrar.setVisible(true);
         }
+    }
+
+    @FXML
+    public void updateCharacter() {
+        CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
+        if (item != null) {
+            String str = "UPDATE characters SET firstName = ?, lastName = ?, fullName = ?, title = ?, family = ? WHERE id = ?";
+            try (Connection connection = Conectar.conectarGoT();
+                 PreparedStatement statement = connection.prepareStatement(str);) {
+                item.setFirstName(txtnombre.getText());
+                item.setLastName(txtapellido.getText());
+                item.setFullName(txtnombrecompleto.getText());
+                item.setTitle(txttitulo.getText());
+                item.setFamily(txtfamilia.getText());
+                statement.setString(1, item.getFirstName());
+                statement.setString(2, item.getLastName());
+                statement.setString(3,item.getFullName());
+                statement.setString(4,item.getTitle());
+                statement.setString(5,item.getFamily());
+                statement.setInt(6, item.getId());
+                statement.executeUpdate();
+                busqueda();
+                txtErrores.setText("Personaje modificado correctamente");
+                vboxCerrar.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            txtErrores.setText("No se ha seleccionado ningún personaje a modificar");
+            vboxCerrar.setVisible(true);
+        }
+    }
+
+    @FXML
+    public void exportarJSON(ActionEvent actionEvent) {
+        // Verifica si el campo de texto 'nombre_doc' no está vacío
+        if (!nombre_doc.getText().isEmpty()){
+            // Si no está vacío, oculta el mensaje de documento vacío
+            doc_vacio.setVisible(false);
+            // Crea una instancia de ObjectMapper para manejar la conversión a JSON
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                //Escribe los datos obtenidos de la búsqueda y los escribe en un documento .json cuyo nombre recibe del campo de texto
+                mapper.writerWithDefaultPrettyPrinter().writeValue(new File("gameofthronesbd/src/main/docs/" + nombre_doc.getText() + ".json"), SearchHolder.getInstance().getCharacterItems());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //Hace visible el vboxOk que muestra un mensaje indicando que la exportación se ha realizado
+            vboxOk.setVisible(true);
+        }
+        else{
+            // Si el campo nombre_doc está vacío muestra el texto doc_vacío
+            doc_vacio.setVisible(true);
+        }
+    }
+
+    @FXML
+    public void clickOk(ActionEvent actionEvent) {
+        vboxOk.setVisible(false);
     }
 }
 

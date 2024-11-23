@@ -24,7 +24,7 @@
                </image>
             </ImageView>
             <TextField fx:id="nombre_doc" layoutX="245.0" layoutY="94.0" />
-            <Button fx:id="JSON" layoutX="290.0" layoutY="180.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: red; -fx-border-color: white;" text="JSON" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+            <Button fx:id="JSON" layoutX="290.0" layoutY="180.0" maxHeight="-Infinity" onAction="#exportarJSON" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: red; -fx-border-color: white;" text="JSON" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
             <Button fx:id="Volver" layoutX="26.0" layoutY="343.0" mnemonicParsing="false" onAction="#clickVolver" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: red; -fx-border-color: white;" text="Volver" textFill="WHITE" />
             <Label layoutX="255.0" layoutY="63.0" text="Nombre del documento" textFill="WHITE" />
             <Label fx:id="doc_vacio" layoutX="223.0" layoutY="242.0" text="El nombre del documento está vacío" textFill="WHITE" visible="false" />
