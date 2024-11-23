@@ -7,6 +7,7 @@ module org.example.gameofthronesbd {
     requires org.controlsfx.controls;
     requires net.synedra.validatorfx;
     requires java.sql;
+    requires com.fasterxml.jackson.databind;
 
     opens org.example.gameofthronesbd.model to javafx.base;
     opens org.example.gameofthronesbd to javafx.fxml;
