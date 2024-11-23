@@ -1,6 +1,6 @@
 # Introducción
 
-Para este supuesto hemos elegido utilizar una BBDD creada a partir de la [API Game of Thrones Character Api] (https://thronesapi.com/api) la cual contiene una lista de personajes de la serie Juego de Tronos identificados por distintos campos por los que podremos
+Para este supuesto hemos elegido utilizar una BBDD creada a partir de la [API Game of Thrones Character Api](https://thronesapi.com/api) la cual contiene una lista de personajes de la serie Juego de Tronos identificados por distintos campos por los que podremos
 realizar las consultas. Estos son : id, nombre, apellido, título, familia, imagen, imagenURL.
  
 Para comprobar el funcionamiento y que podiamos utilizarla , creamos una coleccion y en ella realizamos 3 consultas distintas.
