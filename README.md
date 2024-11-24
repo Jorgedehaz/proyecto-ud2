@@ -1,9 +1,9 @@
 # Indice 
- - [Login](#Introducción)
- - [Login](#Manual_técnico_para_desarrolladores)
- - [Login](#Manual_de_usuario_con_juego_de_pruebas)
- - [Login](#Reparto_tareas)
- - [Login](#Extras_realizados)
+ - [Introducción](#Introducción)
+ - [Manual Técnico para Desarolladores](#Manual_técnico_para_desarrolladores)
+ - [Manual de Usuario](#Manual_de_usuario_con_juego_de_pruebas)
+ - [Reparto de Tareas](#Reparto_tareas)
+ - [Extras Realizados](#Extras_realizados)
  - [Conclusiones](#Conclusiones)
  - [Dedicación Temporal](#Dedicación_temporal)
 
