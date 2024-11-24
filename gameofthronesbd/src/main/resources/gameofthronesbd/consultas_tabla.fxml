@@ -37,7 +37,7 @@
                     </font>
                 </Text>
                 <Button fx:id="botonbuscar" layoutX="300.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#busqueda" style="-fx-background-color: red; -fx-border-color: white;" text="Buscar" textFill="WHITE" />
-                <Button fx:id="botoninsert" layoutX="24.0" layoutY="460.0" mnemonicParsing="false" onAction="#abrirExportarDocumento" style="-fx-background-color: red; -fx-border-color: white;" text="Nuevo Personaje" textFill="WHITE" />
+                <Button fx:id="botoninsert" layoutX="24.0" layoutY="460.0" mnemonicParsing="false" onAction="#abrirNuevoPersonaje" style="-fx-background-color: red; -fx-border-color: white;" text="Nuevo Personaje" textFill="WHITE" />
                 <Button fx:id="botonexportartabla" layoutX="405.0" layoutY="460.0" mnemonicParsing="false" onAction="#abrirExportarDocumento" style="-fx-background-color: red; -fx-border-color: white;" text="Exportar Tabla" textFill="WHITE" />
                 <Button fx:id="botonborrarpersonaje" layoutX="285.0" layoutY="460.0" mnemonicParsing="false" onAction="#deleteCharacter" style="-fx-background-color: red; -fx-border-color: white;" text="Borrar Personaje" textFill="WHITE" />
                 <TextField fx:id="txttitulo" layoutX="40.0" layoutY="98.0" style="-fx-background-color: f9ffb7;" />

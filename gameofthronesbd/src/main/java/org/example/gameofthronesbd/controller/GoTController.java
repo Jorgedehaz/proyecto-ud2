@@ -3,16 +3,13 @@ package org.example.gameofthronesbd.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.gameofthronesbd.model.CharactersItem;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -32,9 +29,6 @@ import java.io.File;
 public class GoTController {
 
     @FXML
-    private ImageView imagenCharacter;
-
-    @FXML
     private VBox vboxOk;
 
     @FXML
@@ -47,13 +41,7 @@ public class GoTController {
     private Label txtErrores;
 
     @FXML
-    private VBox vboxOk;
-
-    @FXML
     private VBox vboxCerrar;
-
-    @FXML
-    private Button boton_cerrar;
 
     @FXML
     private Label doc_vacio;
@@ -63,21 +51,6 @@ public class GoTController {
 
     @FXML
     private TextField nombre_doc;
-
-    @FXML
-    private VBox exportar_documento;
-
-    @FXML
-    private Button Volver;
-
-    @FXML
-    private TextField buscarid;
-
-    @FXML
-    private TextField buscarnombre;
-
-    @FXML
-    private TextField buscarapellido;
 
     @FXML
     private TableView<CharactersItem> tablabusqueda;
@@ -122,21 +95,6 @@ public class GoTController {
     private TextField txtnuevonombrecompleto;
     @FXML
     private ComboBox<String> cmbnuevofamilia;
-
-    @FXML
-    private Button botonbuscar;
-
-    @FXML
-    private Button botonexportartabla;
-
-    @FXML
-    private Button botonlogin;
-
-    @FXML
-    private Button JSON;
-
-    @FXML
-    private Button botoninsert;
 
     @FXML
     public void initialize() {
@@ -381,39 +339,6 @@ public class GoTController {
     }
 
     @FXML
-    public void updateCharacter() {
-        CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
-        if (item != null) {
-            String str = "UPDATE characters SET firstName = ?, lastName = ?, fullName = ?, title = ?, family = ? WHERE id = ?";
-            try (Connection connection = Conectar.conectarGoT();
-                 PreparedStatement statement = connection.prepareStatement(str);) {
-                item.setFirstName(txtnombre.getText());
-                item.setLastName(txtapellido.getText());
-                item.setFullName(txtnombrecompleto.getText());
-                item.setTitle(txttitulo.getText());
-                item.setFamily(txtfamilia.getText());
-                statement.setString(1, item.getFirstName());
-                statement.setString(2, item.getLastName());
-                statement.setString(3,item.getFullName());
-                statement.setString(4,item.getTitle());
-                statement.setString(5,item.getFamily());
-                statement.setInt(6, item.getId());
-                statement.executeUpdate();
-                busqueda();
-                txtErrores.setText("Personaje modificado correctamente");
-                vboxCerrar.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        else{
-            txtErrores.setText("No se ha seleccionado ningún personaje a modificar");
-            vboxCerrar.setVisible(true);
-        }
-    }
-
-
-    @FXML
     public void deleteCharacter() {
         CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
         if (item != null) {
@@ -488,11 +413,6 @@ public class GoTController {
             // Si el campo nombre_doc está vacío muestra el texto doc_vacío
             doc_vacio.setVisible(true);
         }
-    }
-
-    @FXML
-    public void clickOk(ActionEvent actionEvent) {
-        vboxOk.setVisible(false);
     }
           
     @FXML
