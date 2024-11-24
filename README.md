@@ -123,39 +123,44 @@ De los extras propuestos hemos implementado los siguientes:
 
 Hemos diseñado una pantalla de Login en la que introduciremos usuario y contraseña almacenados en la base de datos **uduarios_db** 
 
-**DB Usuarios** 
+ - **DB Usuarios**
+
+   En la creación de la BD Usuarios decidimos usar como PK el nombre, mientras que la contraseña de cada usuario la guardamos encriptada en SHA256.
+
 
 ![DB Usuarios](imagenes/DBUsuarios.png)
 
-**Login ocultando pass**
+ - **Login ocultando pass**
+
+   En el login la contraseña del usuario no se mostrará por pantalla por seguridad.
 
 ![Loginpass](imagenes/LoginOcultandoPass.png)
 
-En caso de no introducir bien algún parámetro nos mostrará un mensaje de error por pantalla. 
+ - **Login error**
 
-**Login error**
+   En caso de no introducir bien algún parámetro nos mostrará un mensaje de error por pantalla. 
 
 ![ErrorLogin](imagenes/Errorlogin.png)
 
-El código usado para implementar esta función ha sido el siguiente. 
-
-**Método Login**
+ - **Método Login**
+   Este método maneja el evento de inicio de sesión llamando al método **Verificación** para compro. Valida las credenciales ingresadas y cambia la escena a la ventana principal si son correctas.
 
 ![MetodoLogin](imagenes/Login.png)
 
-**Método de Verificación**
+ - **Método de Verificación**
+   Verifica las credenciales ingresadas (nombre y password) comparándolas con los valores almacenados en la base de datos. Para comprobar la contraseña es necesaria la llamada al método **hashPassword**
 
 ![Verificacion](imagenes/Verificacion.png)
 
-**Método de Desencriptación**
+ - **Método de Desencriptación**
+   Este método genera un hash criptográfico para la contraseña ingresada utilizando el algoritmo SHA-256. SHA-256 es un algoritmo seguro que convierte cualquier cadena de texto en un hash fijo de 256 bits.
+   1. Usa la clase MessageDigest para obtener una instancia del algoritmo SHA-256.
+   2. Convierte la contraseña ingresada en un arreglo de bytes.
+   3. Aplica el algoritmo de hashing para obtener el hash de la contraseña en formato binario.
+   4. Convierte cada byte del hash en un formato hexadecimal utilizando un bucle.
+   5. Devuelve el hash hexadecimal como un String.
 
 ![Hash](imagenes/HashPassword.png)
-
-**Uso Offline**
-
-Como ya inficamos también en el *Manual técnico para desarrolladores*, nuestra aplicación realiza las consultas contra un archivo JSON dentro de la propia aplicación , por lo que no requiere de conexión a internet para realizar 
-las consultas. (Leer creación del método "Initialize")
-# Propuestas de mejora
 
 Entre las mejoras que se podrían implementar estan:
 
