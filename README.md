@@ -136,7 +136,6 @@ El código usado para implementar esta función ha sido el siguiente.
 
 Como ya inficamos también en el *Manual técnico para desarrolladores*, nuestra aplicación realiza las consultas contra un archivo JSON dentro de la propia aplicación , por lo que no requiere de conexión a internet para realizar 
 las consultas. (Leer creación del método "Initialize")
-# Extras 
 # Propuestas de mejora
 
 Entre las mejoras que se podrían implementar estan:
