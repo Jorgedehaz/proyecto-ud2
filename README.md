@@ -20,7 +20,7 @@ Esta está formada por 3 trablas llamadas Characters, Family y Fortress:
  
  - Families , en la que tenemos los campos familyName y region. En ella el campo familyName hará referencia a family en Characters y a house en Fortress. 
 
-A mayores incluimos una BBDD usuarios que nos servirá para el Login a la aplicación. Esto se desarollará en el apartado [Login](#Extras_realizados) de los extras.
+A mayores incluimos una BBDD usuarios que nos servirá para el Login a la aplicación. Esto se desarollará en el apartado [Login](#Extras-realizados) de los extras.
 
 ![Esquema](https://github.com/Jorgedehaz/proyecto-ud2/blob/main/imagenes/Esquema.png)
  
