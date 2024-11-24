@@ -32,11 +32,15 @@ A mayores incluimos una BBDD usuarios que nos servirá para el Login a la aplica
 
 ## Esrtructura 
 
+El proyecto se ha creado siguiente el conocido [Modelo-Vista-Controlador](https://codigofacilito.com/articulos/mvc-model-view-controller-explicado)
+
+![MVC](https://github.com/Jorgedehaz/proyecto-ud2/blob/main/imagenes/MVC.png)
+
 La aplicación consta de 4 ventanas principales (login.fxml, consultas_tabla.fxml , nuevo_personaje.fxml y exportar_documento.fxml) y una emergente, por lo que en el "Main" de nuestra aplicación cargaremos por defecto la ventana login.fxml y le daremos
 una resolución de 640x400. Para el fin de nuestra aplicación no necesitariamos ocupar toda la pantalla, pero en caso de que fuese neceario pondriamos el parametro .setResizable(true) y hariamos cambios en los .fxml para que se 
 adaptase la interfaz correctamente. 
 
-
+##Modelo
 
 
 # Manual de usuario con juego de pruebas
