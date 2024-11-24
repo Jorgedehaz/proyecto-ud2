@@ -2,8 +2,9 @@
  - [Introducción](#Introducción)
  - [Manual Técnico para Desarrolladores](#Manual-técnico-para-desarrolladores)
  - [Manual de Usuario](#Manual-de-usuario-con-juego-de-pruebas)
- - [Reparto de Tareas](#Reparto-tareas)
+ - [Reparto de Tareas](#Reparto-de-tareas)
  - [Extras Realizados](#Extras-realizados)
+ - [Propuestas de Mejora](#Propuestas-de-mejora)
  - [Conclusiones](#Conclusiones)
  - [Dedicación Temporal](#Dedicación-temporal)
 
