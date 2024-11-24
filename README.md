@@ -31,18 +31,24 @@ A mayores incluimos una BBDD usuarios que nos servirá para el Login a la aplica
  - Maven: La gestión de dependencias se hace con Maven, por lo que deberás tener Maven instalado.
  - IDE: En nuestro caso hemos hecho el desarrollo integro con IntelliJ y la ayuda de Scene Builder para los archivos.fxml. Pero otros programas-- son perfectamente válidos.
 
-## Esrtructura 
+## Estructura 
 
 El proyecto se ha creado siguiente el conocido [Modelo-Vista-Controlador](https://codigofacilito.com/articulos/mvc-model-view-controller-explicado)
 
 ![MVC](https://github.com/Jorgedehaz/proyecto-ud2/blob/main/imagenes/MVC.png)
 
 ## Modelo
+Gestiona el acceso a la información y controla tanto las consultas como las actualizaciones, aplicando los privilegios definidos en las especificaciones de la aplicación. Proporciona a la vista la información solicitada para su visualización. Las peticiones de acceso o manipulación de datos son gestionadas a través del controlador.
 
+ -**app.gameofthronesbd.controller** Contiene las clases:
+  - **CharactersItem** contiene todos los datos necesarios de los personajes con los que vamos a trabajar y los metodos para iteraccionar con ellos.
+  - **Characters** basicamente es una lista de CharactersItem con la que trabajaremos.
+  - **Conectar** contiene los métodos necesarios para coectarse a la BD Got y a la BD Usuarios.
+   
 ## Controlador
 El controlador recibe las entradas del usuario desde la vista y las traduce en acciones que el modelo debe ejecutar. Se encarga de interpretar las acciones del usuario, manejar los eventos, y de actualizar tanto el modelo como la vista.
 
- - **app.gameofthronesbd.controller**:
+ - **app.gameofthronesbd.controller**: Coordina la interacción entre los diferentes componentes, y controla la lógica de la aplicación. Se gestiona todo en la clase **GoTController**
 
 ## Vista
 Se encarga de la visualización de los datos del modelo, haciendolos entendibles para el usuario de la aplicación. Simplemente muestra lo que el modelo le proporcione. La vista recibe entradas del usuario como pueden ser clicks en botones, tabulaciones.. y esta se las envia al controlador.
