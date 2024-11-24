@@ -1,11 +1,11 @@
 # Indice 
  - [Introducción](#Introducción)
- - [Manual Técnico para Desarolladores](#Manual técnico para desarrolladores)
- - [Manual de Usuario](#Manual de usuario con juego de pruebas)
- - [Reparto de Tareas](#Reparto tareas)
- - [Extras Realizados](#Extras realizados)
+ - [Manual Técnico para Desarolladores](#Manual-técnico-para-desarrolladores)
+ - [Manual de Usuario](#Manual-de-usuario-con-juego-de-pruebas)
+ - [Reparto de Tareas](#Reparto-tareas)
+ - [Extras Realizados](#Extras-realizados)
  - [Conclusiones](#Conclusiones)
- - [Dedicación Temporal](#Dedicación temporal)
+ - [Dedicación Temporal](#Dedicación-temporal)
 
 
 # Introducción
