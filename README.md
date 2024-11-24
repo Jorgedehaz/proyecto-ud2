@@ -187,3 +187,7 @@ Además los conocimientos adquiridos en bases de datos el curso anterior facilit
 # Dedicación temporal
 
 A este proyecto cada uno de los integrantes le ha dedicado un total de 10 horas.
+
+# Cualificación esperada
+
+Al haber realizado las tareas propuestas y varios extras la cualificación esperada es de 7-8.
