@@ -1,4 +1,11 @@
 # Indice 
+ - [Login](#Introducción)
+ - [Login](#Manual_técnico_para_desarrolladores)
+ - [Login](#Manual_de_usuario_con_juego_de_pruebas)
+ - [Login](#Reparto_tareas)
+ - [Login](#Extras_realizados)
+ - [Conclusiones](#Conclusiones)
+ - [Dedicación Temporal](#Dedicación_temporal)
 
 
 # Introducción
@@ -12,7 +19,7 @@ Esta está formada por 3 trablas llamadas Characters, Family y Fortress:
  
  - Families , en la que tenemos los campos familyName y region. En ella el campo familyName hará referencia a family en Characters y a house en Fortress. 
 
-A mayores incluimos una BBDD usuarios que nos servirá para el Login a la aplicación. Esto se desarollará en el apartado [Login](#Extras)
+A mayores incluimos una BBDD usuarios que nos servirá para el Login a la aplicación. Esto se desarollará en el apartado [Login](#Extras_realizados) de los extras.
 
 ![Esquema](https://github.com/Jorgedehaz/proyecto-ud2/blob/main/imagenes/Esquema.png)
  
@@ -29,7 +36,7 @@ Para comprobar el funcionamiento hemos realizamos 5 consultas distintas de selec
 ![Consulta 5]()
 
 
-# Manual  técnico para desarrolladores
+# Manual técnico para desarrolladores
 
 Para la creación de nuestro Proyecto en JavaFX comenzamos eligiendo el JDK y la versión de JavaFX en la que vamos a trabajar. En nuestro caso la 17.0.6.
 
