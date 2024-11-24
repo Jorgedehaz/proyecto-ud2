@@ -282,6 +282,7 @@ public class GoTController {
         }
     }
 
+    //Este método cambia la scene del stage actual a login.fxml
     @FXML
     protected void salir(ActionEvent event) throws IOException {
         try {
@@ -296,13 +297,14 @@ public class GoTController {
         }
     }
 
+    //Este método cierra una ventana emergente
     @FXML
     public void clickCerrar(ActionEvent actionEvent) {
         vboxCerrar.setVisible(false);
         txtErrores.setText("");
-        consultas.setDisable(false);;
     }
 
+    //Este método cierra una ventana emergente
     @FXML
     public void clickOk(ActionEvent actionEvent) {
         vboxOk.setVisible(false);
@@ -327,6 +329,7 @@ public class GoTController {
         }
     }
 
+    //Este método sirve para vaciar los campos de búsqueda
     @FXML
     public void clearCampos() {
         txtid.clear();
@@ -338,6 +341,7 @@ public class GoTController {
         txtid.setDisable(false);
     }
 
+    //Este método sirve para borrar personajes en la base de datos en función del id del personaje seleccionado en la tabla
     @FXML
     public void deleteCharacter() {
         CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
@@ -359,7 +363,7 @@ public class GoTController {
         }
     }
 
-   
+    //Este método sirve para modificar un personaje en la base de datos en función del personaje seleccionado en la tabla
     @FXML  
     public void updateCharacter() {
         CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
@@ -429,6 +433,7 @@ public class GoTController {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void cargarFamilias() {
         ObservableList<String> familias = FXCollections.observableArrayList();
