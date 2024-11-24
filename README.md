@@ -1,6 +1,6 @@
 # Indice 
  - [Introducción](#Introducción)
- - [Manual Técnico para Desarolladores](#Manual-técnico-para-desarrolladores)
+ - [Manual Técnico para Desarrolladores](#Manual-técnico-para-desarrolladores)
  - [Manual de Usuario](#Manual-de-usuario-con-juego-de-pruebas)
  - [Reparto de Tareas](#Reparto-tareas)
  - [Extras Realizados](#Extras-realizados)
@@ -111,9 +111,9 @@ Por último si se desea seguir realizando búsquedas se pulsará el botón *Volv
 
 Se han repartido las tareas en función del tiempo que se le ha dedicado a cada una de forma que este fuera equitativo:
 
-Jorge ha implementado las funcionalidades de búsqueda por los distintos campos y mostrar los resultados mediante una tabla, la exportación de datos a XML, la verificación de usuarios y el login, botones de cambio de pantalla y mensajes emergentes y ha realizado el modelo de las pantallas de login y búsquedas.
+Jorge ha implementado las funcionalidades de búsqueda por los distintos campos y mostrar los resultados mediante una tabla,  la verificación de usuarios y el login, el método para insertar personajes en la base de datos así como la interfaz de inserción de personaje y la creación de la base de datos para los usuarios.
 
-Miguel ha implementado las funcionalidades de exportación a binario, texto y json, la interacción con la tabla para recibir la imagen de cada personaje, botones de cambio de pantalla, ventanas y mensajes emergentes. Ha realizado el modelo de la pantalla de exportación de documentos y ha añadido estilos a las distintas pantallas.
+Miguel ha implementado las funcionalidades de exportación a json, la interacción con la tabla para seleccionar un personaje, los métodos de modificación y borrado de personajes y la creación de la base de datos para los personajes, familias y fortalezas.
 
 # Extras realizados
 
