@@ -36,11 +36,18 @@ El proyecto se ha creado siguiente el conocido [Modelo-Vista-Controlador](https:
 
 ![MVC](https://github.com/Jorgedehaz/proyecto-ud2/blob/main/imagenes/MVC.png)
 
-La aplicación consta de 4 ventanas principales (login.fxml, consultas_tabla.fxml , nuevo_personaje.fxml y exportar_documento.fxml) y una emergente, por lo que en el "Main" de nuestra aplicación cargaremos por defecto la ventana login.fxml y le daremos
-una resolución de 640x400. Para el fin de nuestra aplicación no necesitariamos ocupar toda la pantalla, pero en caso de que fuese neceario pondriamos el parametro .setResizable(true) y hariamos cambios en los .fxml para que se 
-adaptase la interfaz correctamente. 
+## Modelo
 
-##Modelo
+## Controlador
+El controlador recibe las entradas del usuario desde la vista y las traduce en acciones que el modelo debe ejecutar. Se encarga de interpretar las acciones del usuario, manejar los eventos, y de actualizar tanto el modelo como la vista.
+
+ - **app.gameofthronesbd.controller**:
+
+## Vista
+Se encarga de la visualización de los datos del modelo, haciendolos entendibles para el usuario de la aplicación. Simplemente muestra lo que el modelo le proporcione. La vista recibe entradas del usuario como pueden ser clicks en botones, tabulaciones.. y esta se las envia al controlador.
+ - **app.gameofthronesbd**: Contiene la clase principal del programa **GoTApp**. En ella se genera la interfaz gráfica de usuario (con JavaFX) y se crean las escenas cuando se ejecuta el programa.
+ - **Resources**: en el directorio resources se almacenan los recursos necesarios para construir la interfaz de usuario. Esto son los archivos .fxml que contienen los diseños de cada vista, la hoja de estilos css, imágenes, etc.
+
 
 
 # Manual de usuario con juego de pruebas
