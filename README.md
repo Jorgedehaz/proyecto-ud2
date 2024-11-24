@@ -121,27 +121,35 @@ De los extras propuestos hemos implementado los siguientes:
 
 **Login**
 
-Hemos diseñado una pantalla de Login en la que introduciremos usuario y contraseña almacenados en la base de datos **uduarios_db**
+Hemos diseñado una pantalla de Login en la que introduciremos usuario y contraseña almacenados en la base de datos **uduarios_db** 
+
+**DB Usuarios** 
+
+![DB Usuarios](imagenes/DBUsuarios.png)
 
 **Login ocultando pass**
 
-![Loginpass](res/imagenes/Loginbien.png)
+![Loginpass](imagenes/LoginOcultandoPass.png)
 
 En caso de no introducir bien algún parámetro nos mostrará un mensaje de error por pantalla. 
 
 **Login error**
 
-![ErrorLogin](res/imagenes/Errorlogin.png)
+![ErrorLogin](imagenes/Errorlogin.png)
 
 El código usado para implementar esta función ha sido el siguiente. 
 
 **Método Login**
 
-![MetodoLogin](res/imagenes/Login.png)
+![MetodoLogin](imagenes/Login.png)
 
 **Método de Verificación**
 
-![Verificacion](res/imagenes/Verificacion.png)
+![Verificacion](imagenes/Verificacion.png)
+
+**Método de Desencriptación**
+
+![Hash](imagenes/HashPassword.png)
 
 **Uso Offline**
 
