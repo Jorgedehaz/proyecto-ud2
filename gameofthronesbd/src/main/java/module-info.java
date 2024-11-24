@@ -6,6 +6,7 @@ module org.example.gameofthronesbd {
 
     requires org.controlsfx.controls;
     requires net.synedra.validatorfx;
+    requires com.fasterxml.jackson.databind;
     requires java.sql;
     requires com.fasterxml.jackson.databind;
 

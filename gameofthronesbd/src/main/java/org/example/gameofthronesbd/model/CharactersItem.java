@@ -10,6 +10,7 @@ public class CharactersItem implements Serializable {
 	private String fullName;
 	private String title;
 	private String family;
+	private String region;
 
 	public int getId() {
 		return id;
@@ -58,6 +59,10 @@ public class CharactersItem implements Serializable {
 	public void setFamily(String family) {
 		this.family = family;
 	}
+
+	public String getRegion() {return region; }
+
+	public void setRegion(String region) {this.region = region; }
 
 	@Override
 	public String toString() {

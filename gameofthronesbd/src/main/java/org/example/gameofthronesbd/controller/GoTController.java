@@ -1,21 +1,18 @@
 package org.example.gameofthronesbd.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import org.example.gameofthronesbd.model.Characters;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.gameofthronesbd.model.CharactersItem;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,24 +20,25 @@ import javafx.scene.input.MouseEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.io.IOException;
-import java.io.*;
-import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import java.util.ResourceBundle;
-import java.util.stream.Collectors;
+
 import org.example.gameofthronesbd.model.Conectar;
 import java.io.File;
-import java.io.IOException;
 
 public class GoTController {
 
     @FXML
     private ImageView imagenCharacter;
+
+    @FXML
+    private VBox vboxOk;
+
+    @FXML
+    private Label labelMensaje;
 
     @FXML
     private VBox consultas;
@@ -94,6 +92,9 @@ public class GoTController {
     private TableColumn<CharactersItem, String> coltitulo;
 
     @FXML
+    private TableColumn<CharactersItem, String> colregion;
+
+    @FXML
     private TextField txtname;
 
     @FXML
@@ -111,6 +112,16 @@ public class GoTController {
     private TextField txttitulo;
     @FXML
     private TextField txtfamilia;
+    @FXML
+    private TextField txtnuevonombre;
+    @FXML
+    private TextField txtnuevoapellido;
+    @FXML
+    private TextField txtnuevotitulo;
+    @FXML
+    private TextField txtnuevonombrecompleto;
+    @FXML
+    private ComboBox<String> cmbnuevofamilia;
 
     @FXML
     private Button botonbuscar;
@@ -122,19 +133,29 @@ public class GoTController {
     private Button botonlogin;
 
     @FXML
+    private Button JSON;
+
+    @FXML
+    private Button botoninsert;
+
+    @FXML
     public void initialize() {
 
-        if (colnombrecompleto != null || colcasa != null || coltitulo != null) {
+        if (colnombrecompleto != null || colcasa != null || coltitulo != null ||colregion != null) {
             colnombrecompleto.setCellValueFactory(new PropertyValueFactory<>("fullName"));
             colcasa.setCellValueFactory(new PropertyValueFactory<>("family"));
             coltitulo.setCellValueFactory(new PropertyValueFactory<>("title"));
+            colregion.setCellValueFactory(new PropertyValueFactory<>("region"));
         }else {
             ;
         }
-        // Añadir más columnas si vemos que hace falta, por ej región
+        //Cargamos las familias en el combobox
+        cargarFamilias();
+
+
     }
 
-    // Método para cifrar la contraseña en SHA-256
+    // Métod para cifrar la contraseña en SHA-256
     private String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -221,7 +242,10 @@ public class GoTController {
         String family = txtfamilia.getText().trim();
         List<CharactersItem> results = new ArrayList<>();
         if (!id.equals("") || !firstName.equals("") || !lastName.equals("") || !fullName.equals("") || !title.equals("") || !family.equals("")) {
-            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM characters WHERE 1=1");
+            StringBuilder queryBuilder = new StringBuilder(  "SELECT c.*, f.region " +
+                                                             "FROM characters c " +
+                                                             "LEFT JOIN families f ON c.family = f.familyName " +
+                                                             "WHERE 1=1");
             List<String> parameters = new ArrayList<>();
 
             // Construir la consulta dinámica según los campos no vacíos
@@ -270,6 +294,7 @@ public class GoTController {
                         character.setFullName(resultSet.getString("fullName"));
                         character.setFamily(resultSet.getString("family"));
                         character.setTitle(resultSet.getString("title"));
+                        character.setRegion(resultSet.getString("region"));
                         results.add(character);
                     }
                 }
@@ -321,19 +346,9 @@ public class GoTController {
     }
 
     @FXML
-    public void abrirExportarDocumento(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gameofthronesbd/exportar_documento.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void clickOk(ActionEvent actionEvent) {
+        vboxOk.setVisible(false);
     }
-
 
     @FXML
     public void onTableClicked(MouseEvent event) {
@@ -366,6 +381,39 @@ public class GoTController {
     }
 
     @FXML
+    public void updateCharacter() {
+        CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
+        if (item != null) {
+            String str = "UPDATE characters SET firstName = ?, lastName = ?, fullName = ?, title = ?, family = ? WHERE id = ?";
+            try (Connection connection = Conectar.conectarGoT();
+                 PreparedStatement statement = connection.prepareStatement(str);) {
+                item.setFirstName(txtnombre.getText());
+                item.setLastName(txtapellido.getText());
+                item.setFullName(txtnombrecompleto.getText());
+                item.setTitle(txttitulo.getText());
+                item.setFamily(txtfamilia.getText());
+                statement.setString(1, item.getFirstName());
+                statement.setString(2, item.getLastName());
+                statement.setString(3,item.getFullName());
+                statement.setString(4,item.getTitle());
+                statement.setString(5,item.getFamily());
+                statement.setInt(6, item.getId());
+                statement.executeUpdate();
+                busqueda();
+                txtErrores.setText("Personaje modificado correctamente");
+                vboxCerrar.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            txtErrores.setText("No se ha seleccionado ningún personaje a modificar");
+            vboxCerrar.setVisible(true);
+        }
+    }
+
+
+    @FXML
     public void deleteCharacter() {
         CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
         if (item != null) {
@@ -386,7 +434,8 @@ public class GoTController {
         }
     }
 
-    @FXML
+   
+    @FXML  
     public void updateCharacter() {
         CharactersItem item = tablabusqueda.getSelectionModel().getSelectedItem();
         if (item != null) {
@@ -444,6 +493,101 @@ public class GoTController {
     @FXML
     public void clickOk(ActionEvent actionEvent) {
         vboxOk.setVisible(false);
+    }
+          
+    @FXML
+    public void abrirNuevoPersonaje(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/gameofthronesbd/nuevo_personaje.fxml"));
+            Parent root = (Parent)loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void cargarFamilias() {
+        ObservableList<String> familias = FXCollections.observableArrayList();
+
+        try (Connection connection = Conectar.conectarGoT();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT familyName FROM families")) {
+
+            while (rs.next()) {
+                familias.add(rs.getString("familyName"));
+            }
+
+            if (cmbnuevofamilia == null) {
+                System.out.println("El ComboBox cmbnuevofamilia no está inicializado.");
+                return;
+            }else {
+                System.out.println("El ComboBox cmbnuevofamilia está inicializado.");
+            }
+
+            cmbnuevofamilia.setItems(familias); // Asignar la lista al ComboBox
+            // Seleccionar el primer elemento por defecto si la lista no está vacía
+            if (!familias.isEmpty()) {
+                cmbnuevofamilia.setValue(familias.get(0));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al cargar las familias desde la base de datos:");
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    public void insertCharacter(ActionEvent event) {
+        String firstName = txtnuevonombre.getText().trim();
+        String lastName = txtnuevoapellido.getText().trim();
+        String fullName = txtnuevonombrecompleto.getText().trim();
+        String title = txtnuevotitulo.getText().trim();
+        String family = cmbnuevofamilia.getValue().trim();
+
+        try (Connection connection = Conectar.conectarGoT()) {
+            String sql = "INSERT INTO characters (firstName, lastName, fullName, title, family) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+                preparedStatement.setString(1, firstName);
+                preparedStatement.setString(2, lastName);
+                preparedStatement.setString(3, fullName);
+                preparedStatement.setString(4, title);
+                preparedStatement.setString(5, family);
+
+                // Ejecutar la consulta
+                int rowsInserted = preparedStatement.executeUpdate();
+
+                if (rowsInserted > 0) {
+                    labelMensaje.setText("¡Personaje creado exitosamente!");
+                    vboxOk.setVisible(true); // Mostrar el mensaje
+                } else {
+                    labelMensaje.setText("No se insertó ningún personaje.");
+                    vboxOk.setVisible(true); // Mostrar el mensaje
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+  
+     @FXML
+    public void abrirExportarDocumento(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gameofthronesbd/exportar_documento.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

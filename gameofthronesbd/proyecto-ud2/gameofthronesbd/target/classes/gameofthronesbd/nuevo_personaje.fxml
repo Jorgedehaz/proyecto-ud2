@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="consultas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.gameofthronesbd.controller.GoTController">
+    <children>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="640.0" style="-fx-background-color: gray;" VBox.vgrow="ALWAYS">
+            <children>
+            <ImageView fitHeight="357.0" fitWidth="331.0" layoutX="-42.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/tully.png" />
+               </image>
+            </ImageView>
+                <TextField fx:id="txtnuevonombre" layoutX="65.0" layoutY="73.0" style="-fx-background-color: f9ffb7;" />
+                <Text fill="WHITE" layoutX="15.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" />
+                <TextField fx:id="txtnuevoapellido" layoutX="275.0" layoutY="73.0" style="-fx-background-color: f9ffb7;" />
+                <Text fill="WHITE" layoutX="225.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido:" />
+                <Button fx:id="Volver" layoutX="300.0" layoutY="460.0" mnemonicParsing="false" onAction="#clickVolver" style="-fx-background-color: red; -fx-border-color: white;" text="Volver" textFill="WHITE" />
+                <Text fill="WHITE" layoutX="150.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Introduce los datos del nuevo personaje">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <TextField fx:id="txtnuevotitulo" layoutX="140.0" layoutY="143.0" style="-fx-background-color: f9ffb7;" />
+                <TextField fx:id="txtnuevonombrecompleto" layoutX="370.0" layoutY="143.0" style="-fx-background-color: f9ffb7;" />
+                <Text fill="WHITE" layoutX="105.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Título:" />
+                <Text fill="WHITE" layoutX="430.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Familia:" />
+                <Text fill="WHITE" layoutX="300.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N.Completo:" />
+            <Button fx:id="crear" layoutX="301.0" layoutY="201.0" mnemonicParsing="false" onAction="#insertCharacter" style="-fx-background-color: red; -fx-border-color: white;" text="Crear" textFill="WHITE" />
+            <ImageView fitHeight="357.0" fitWidth="331.0" layoutX="354.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/greyjoy.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="cmbnuevofamilia" layoutX="476.0" layoutY="73.0" prefWidth="150.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
