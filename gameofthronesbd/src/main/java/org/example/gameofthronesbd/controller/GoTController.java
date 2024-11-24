@@ -353,6 +353,8 @@ public class GoTController {
                 statement.executeUpdate();
                 clearCampos();
                 busqueda();
+                txtErrores.setText("Personaje eliminado correctamente");
+                vboxCerrar.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
