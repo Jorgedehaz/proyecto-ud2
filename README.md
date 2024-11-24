@@ -5,6 +5,7 @@
 
 Para este supuesto hemos elegido utilizar una BBDD creada a partir de la [API Game of Thrones Character Api](https://thronesapi.com/api). 
 Esta está formada por 3 trablas llamadas Characters, Family y Fortress:
+ 
  -Characters contiene a los personajes de la serie Juego de Tronos identificados por distintos campos por los que podremos realizar las consultas en la aplicación. Estos son : id, nombre, apellido, título, familia, imagen, imagenURL. 
  
  -Fortress en la que tenemos los campos name, house y ruler, esta última relacionada con la id del personaje que gobierne el Fortress. 
