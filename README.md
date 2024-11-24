@@ -162,18 +162,21 @@ Hemos diseñado una pantalla de Login en la que introduciremos usuario y contras
 
 ![Hash](imagenes/HashPassword.png)
 
+# Propuestas de mejora
+
 Entre las mejoras que se podrían implementar estan:
 
-- Añadir un mensaje que indique que no se han encontrado coincidencias al realizar la búsqueda.
-- Actualmente los datos se extraen de un json obtenido de la API y que se ha guardado en la carpeta *resources*, la mejora sería implementar que la búsqueda se realizara directamente contra la API.
-- Encriptar los datos del fichero properties para el log in.
+- Añadir filtros de búsqueda en función de información de otras tablas, por ejemplo mostrar solo los personajes que sean "ruler" de una fortaleza.
 
+
+- Poder seleccionar la dirección donde se guardará el fichero .json.
+
+
+- Actualmente la clave primaria de la tabla es un incrementable y por lo tanto es posible que haya personajes que tengan el mismo nombre completo así como el resto de campos, una mejora sería utilizar una clave alternativa única para evitar que esto pase, por ejemplo el nombre completo.
 # Conclusiones
 
-En un principio el proyecto fue avanzando lentamente debido a la falta de conocimiento de JavaFX de los integrantes del grupo, sin embargo al entender como funciona se comezó a trabajar de manera más agil permitiendo alcanzar los requerimientos del proyecto dentro del plazo de entrega.
-
+Este proyecto ha resultado más fácil que el anterior al ya conocer JavaFX y contar con el proyecto anterior como base de forma que este fuera una actualización del otro.
+Además los conocimientos adquiridos en bases de datos el curso anterior facilitaron la realización de todas las consultas propuestas.
 # Dedicación temporal
 
-A este proyecto cada uno de los integrantes le ha dedicado un total de 20 horas divididos entre los distintos días de la semana de la siguiente manera.
-
-![ Imagen horas trabajo ](res/imagenes/Horas_trabajo.png)
+A este proyecto cada uno de los integrantes le ha dedicado un total de 10 horas.
