@@ -23,6 +23,24 @@ A mayores incluimos una BBDD usuarios que nos servirá para el Login a la aplica
 
 ![Esquema](https://github.com/Jorgedehaz/proyecto-ud2/blob/main/imagenes/Esquema.png)
  
+
+# Manual técnico para desarrolladores
+
+ - JavaSE y Java FX: El proyecto está desarrollado en la versión de JavaFX 17.0.6 y con la versión de Java 17 , por lo que necesitaremos estas versiones o unas superiores instaladas.
+ - Maven: La gestión de dependencias se hace con Maven, por lo que deberás tener Maven instalado.
+ - IDE: En nuestro caso hemos hecho el desarrollo integro con IntelliJ y la ayuda de Scene Builder para los archivos.fxml. Pero otros programas-- son perfectamente válidos.
+
+## Esrtructura 
+
+La aplicación consta de 4 ventanas principales (login.fxml, consultas_tabla.fxml , nuevo_personaje.fxml y exportar_documento.fxml) y una emergente, por lo que en el "Main" de nuestra aplicación cargaremos por defecto la ventana login.fxml y le daremos
+una resolución de 640x400. Para el fin de nuestra aplicación no necesitariamos ocupar toda la pantalla, pero en caso de que fuese neceario pondriamos el parametro .setResizable(true) y hariamos cambios en los .fxml para que se 
+adaptase la interfaz correctamente. 
+
+
+
+
+# Manual de usuario con juego de pruebas
+
 Para comprobar el funcionamiento hemos realizamos 5 consultas distintas de selección, actualización y borrado.
 
 ![Consulta 1]()
@@ -35,19 +53,6 @@ Para comprobar el funcionamiento hemos realizamos 5 consultas distintas de selec
 
 ![Consulta 5]()
 
-
-# Manual técnico para desarrolladores
-
-Para la creación de nuestro Proyecto en JavaFX comenzamos eligiendo el JDK y la versión de JavaFX en la que vamos a trabajar. En nuestro caso la 17.0.6.
-
-La aplicación consta de 4 ventanas principales (login.fxml, consultas_tabla.fxml , nuevo_personaje.fxml y exportar_documento.fxml) y una emergente, por lo que en el "Main" de nuestra aplicación cargaremos por defecto la ventana login.fxml y le daremos
-una resolución de 640x400. Para el fin de nuestra aplicación no necesitariamos ocupar toda la pantalla, pero en caso de que fuese neceario pondriamos el parametro .setResizable(true) y hariamos cambios en los .fxml para que se 
-adaptase la interfaz correctamente. 
-
-
-
-
-# Manual de usuario con juego de pruebas
 
 Para comenzar a utilizar la aplicación se debe realizar un log in con uno de los usuarios válidos con su correspondiente contraseña.
 
