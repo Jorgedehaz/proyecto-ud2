@@ -117,9 +117,11 @@ Miguel ha implementado las funcionalidades de exportación a json, la interacci�
 
 # Extras realizados
 
+De los extras propuestos hemos implementado los siguientes: 
+
 **Login**
 
-A mayores del proceso y el código explicado en el *Manual técnico para desarrolladores* , hemos diseñado una pantalla de Login en la que introduciremos usuario y contraseña almacenados e un archivo .properties.
+Hemos diseñado una pantalla de Login en la que introduciremos usuario y contraseña almacenados en la base de datos **uduarios_db**
 
 **Login ocultando pass**
 
