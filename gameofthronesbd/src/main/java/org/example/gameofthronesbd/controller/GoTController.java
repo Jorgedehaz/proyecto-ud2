@@ -40,12 +40,6 @@ import java.io.IOException;
 public class GoTController {
 
     @FXML
-    private ImageView imagenCharacter;
-
-    @FXML
-    private VBox consultas;
-
-    @FXML
     private Label txtErrores;
 
     @FXML
@@ -55,9 +49,6 @@ public class GoTController {
     private VBox vboxCerrar;
 
     @FXML
-    private Button boton_cerrar;
-
-    @FXML
     private Label doc_vacio;
 
     @FXML
@@ -65,21 +56,6 @@ public class GoTController {
 
     @FXML
     private TextField nombre_doc;
-
-    @FXML
-    private VBox exportar_documento;
-
-    @FXML
-    private Button Volver;
-
-    @FXML
-    private TextField buscarid;
-
-    @FXML
-    private TextField buscarnombre;
-
-    @FXML
-    private TextField buscarapellido;
 
     @FXML
     private TableView<CharactersItem> tablabusqueda;
@@ -111,15 +87,6 @@ public class GoTController {
     private TextField txttitulo;
     @FXML
     private TextField txtfamilia;
-
-    @FXML
-    private Button botonbuscar;
-
-    @FXML
-    private Button botonexportartabla;
-
-    @FXML
-    private Button botonlogin;
 
     @FXML
     public void initialize() {
@@ -288,11 +255,17 @@ public class GoTController {
     @FXML
     protected void clickVolver(ActionEvent event) throws IOException {
         try {
+            // Crea un cargador (loader) que se encargará de cargar el archivo FXML asociado a la vista que queremos mostrar.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gameofthronesbd/consultas_tabla.fxml"));
+            // Utiliza el loader para cargar el archivo FXML y crear la interfaz de usuario definida en dicho archivo.
             Parent root = loader.load();
+            // Crea una nueva escena usando el nodo raíz cargado desde el archivo FXML.
             Scene scene = new Scene(root);
+            // Obtiene la ventana actual (Stage) en la que se encuentra el evento, es decir, la ventana desde la que se hace clic.
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Cambia la escena actual de la ventana con la nueva escena que contiene la interfaz cargada.
             stage.setScene(scene);
+            // Muestra la nueva escena en la misma ventana (Stage).
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -302,22 +275,30 @@ public class GoTController {
     @FXML
     protected void salir(ActionEvent event) throws IOException {
         try {
+            // Crea un objeto FXMLLoader que se encargará de cargar el archivo FXML de la vista de inicio de sesión.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gameofthronesbd/login.fxml"));
+            // Carga el archivo FXML y obtiene el nodo raíz de la nueva vista.
             Parent root = loader.load();
+            // Crea una nueva escena con la vista cargada.
             Scene scene = new Scene(root);
+            // Obtiene la ventana (Stage) actual en la que ocurrió el evento de clic (al presionar el botón "Salir").
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Cambia la escena actual de la ventana por la nueva escena cargada.
             stage.setScene(scene);
+            // Muestra la nueva escena en la ventana (Stage).
             stage.show();
         } catch (IOException e) {
+            // Si ocurre un error al cargar el archivo FXML, se captura la excepción IOException y se imprime el error en consola.
             e.printStackTrace();
         }
     }
 
     @FXML
     public void clickCerrar(ActionEvent actionEvent) {
+        //Hace invisible la ventana vBoxCerrar
         vboxCerrar.setVisible(false);
+        //Cambia el textos de txtErrores
         txtErrores.setText("");
-        consultas.setDisable(false);;
     }
 
     @FXML

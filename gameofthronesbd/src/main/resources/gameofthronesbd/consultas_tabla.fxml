@@ -59,7 +59,7 @@
                   </Pane>
                </children>
             </VBox>
-            <Button fx:id="botonlimpiar" layoutX="20.0" layoutY="150.0" mnemonicParsing="false" onAction="#clearCampos" style="-fx-background-color: red; -fx-border-color: white;" text="Limpiar" textFill="WHITE" />
+            <Button fx:id="botonlimpiar" layoutX="27.0" layoutY="150.0" mnemonicParsing="false" onAction="#clearCampos" style="-fx-background-color: red; -fx-border-color: white;" text="Limpiar" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>
