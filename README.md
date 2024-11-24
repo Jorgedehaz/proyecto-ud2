@@ -99,7 +99,11 @@ En esta última consulta se borra el personaje creado de la base de datos y se l
 
 Además de las consultas y otras operaciones sobre la base de datos también se pueden exportar a json los datos de la búsqueda. Para ello se utiliza el botón "Exportar tabla", el cual lleva a una nueva página en la que se puede elegir el nombre del documento. Cuando la exportación se realice correctamente aparecerá una ventana emergente confirmando la exportación. Los documentos se guardarán en la carpeta *docs*.
 
-![ Imagen exportcorrecto ]().
+![ Imagen exportcorrecto ](imagenes/exportarBien.png).
+
+En caso de que el nombre de documento esté vacío la exportación no se llevará a cabo.
+
+![ Imagen exportmal ](imagenes/exportarMal.png).
 
 Por último si se desea seguir realizando búsquedas se pulsará el botón *Volver* para ir a la pantalla de búsquedas.
 
