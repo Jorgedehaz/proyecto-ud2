@@ -52,9 +52,20 @@ Se encarga de la visualización de los datos del modelo, haciendolos entendibles
 
 # Manual de usuario con juego de pruebas
 
+Para comenzar a utilizar la aplicación se debe realizar un log in con uno de los usuarios válidos con su correspondiente contraseña.
+
+![ Imagen loginbien ](res/imagenes/Loginbien.png)
+
+En caso de que alguno de los dos campos sea incorrecto aparecerá un mensaje indicando que el nombre o la contraseña son incorrectos.
+
+![ Imagen loginmal ](res/imagenes/Errorlogin.png)
+
+Una vez terminado el log in se accede a la pantalla de búsquedas donde se podrán realizar búsquedas de personaje por tres campos distintos: id, nombre y apellido.
+En caso de que haya varios personajes que coincidan con la búsqueda realizada estos apareceran en una tabla.
+
 Para comprobar el funcionamiento hemos realizamos 5 consultas distintas de selección, actualización y borrado.
 
-![Consulta 1]()
+![consulta_1]()
 
 ![Consulta 2]()
 
